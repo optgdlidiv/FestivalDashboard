@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Festival Rush 2026 | Notified Specials, Delhi Division</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js"></script>
+<style>
+  :root {
+    --navy: #0E2747;
+    --navy2: #1F4573;
+    --gold: #C9A23A;
+    --gold-soft: #F8EFD6;
+    --gold-ink: #6E510A;
+    --paper: #F2F4F7;
+    --ink: #15202E;
+    --muted: #586879;
+    --line: #DAE0E8;
+    --tint: #EAEFF5;
+    --focus: #2F6FD6;
+    --num: 'Barlow Condensed', 'Arial Narrow', Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body { background: var(--paper); color: var(--ink); font: 15px/1.45 'Source Sans 3', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; }
+  button { font: inherit; color: inherit; cursor: pointer; }
+  button:focus-visible, input:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+  .wrap { max-width: 1440px; margin: 0 auto; padding: 0 18px; }
+
+  /* ---------- header ---------- */
+  .band { background: var(--navy); color: #fff; border-bottom: 4px solid var(--gold); }
+  .hdr { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 22px; padding: 12px 0; }
+  h1 { font-family: var(--num); font-weight: 700; font-size: 26px; line-height: 1.05; margin: 0; }
+  .stamp { display: block; font-family: 'Source Sans 3', sans-serif; font-weight: 400; font-size: 13px; color: #BFCBDA; }
+  .seg { display: inline-flex; border: 1px solid rgba(255,255,255,.3); border-radius: 8px; overflow: hidden; }
+  .seg button { background: transparent; border: 0; color: #fff; padding: 6px 14px; text-align: left; line-height: 1.2; }
+  .seg button + button { border-left: 1px solid rgba(255,255,255,.2); }
+  .seg button small { display: block; font-size: 12px; opacity: .75; }
+  .seg button:hover { background: rgba(255,255,255,.08); }
+  .seg button[aria-pressed="true"] { background: #fff; color: var(--navy); box-shadow: inset 0 -3px 0 var(--gold); }
+  .seg button[aria-pressed="true"] small { opacity: .8; }
+  .dates { display: flex; gap: 8px; align-items: center; font-size: 13px; color: #C9D4E3; }
+  .dates input { font: inherit; font-size: 14px; padding: 5px 8px; border: 0; border-radius: 6px; color: var(--ink); background: #fff; }
+  .hdr-right { margin-left: auto; display: flex; gap: 8px; }
+  .ghost { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,.45); border-radius: 6px; padding: 6px 12px; font-size: 14px; }
+  .ghost:hover { background: rgba(255,255,255,.08); }
+  .ghost:disabled { opacity: .6; cursor: wait; }
+
+  /* ---------- filter bar ---------- */
+  .fbar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; margin: 12px 0; }
+  .fgroup { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+  .flabel { font-size: 13px; font-weight: 600; color: var(--muted); margin-right: 2px; }
+  .dchip { border: 1px solid var(--line); background: #fff; border-radius: 18px; padding: 3px 12px; font-size: 14px; }
+  .dchip b { font-family: var(--num); font-size: 17px; margin-left: 4px; }
+  .dchip.east { border-color: var(--gold); font-weight: 700; }
+  .dchip[aria-pressed="true"] { background: var(--navy); border-color: var(--navy); color: #fff; }
+  .lseg { display: inline-flex; border: 1px solid var(--line); border-radius: 18px; overflow: hidden; background: #fff; }
+  .lseg button { border: 0; background: transparent; padding: 3px 12px; font-size: 14px; }
+  .lseg button[aria-pressed="true"] { background: var(--navy); color: #fff; }
+  .achip { display: inline-flex; align-items: center; gap: 6px; background: var(--gold-soft); border: 1px solid var(--gold); color: var(--gold-ink); border-radius: 18px; padding: 2px 4px 2px 12px; font-size: 14px; font-weight: 600; }
+  .achip button { border: 0; background: transparent; color: var(--gold-ink); width: 22px; height: 22px; border-radius: 50%; line-height: 1; font-size: 16px; }
+  .achip button:hover { background: rgba(201,162,58,.25); }
+  .linkbtn { background: none; border: 0; color: var(--focus); text-decoration: underline; padding: 0; font-size: 14px; }
+
+  /* ---------- KPI strip ---------- */
+  .ctx { font-size: 13px; color: var(--muted); margin: 0 0 6px; }
+  .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px; }
+  .kpi { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; }
+  .kpi.lead { background: var(--navy); color: #fff; border-color: var(--navy); }
+  .kpi.gold { border-left: 6px solid var(--gold); }
+  .kpi.navy { border-left: 6px solid var(--navy2); }
+  .k-label { font-size: 13px; font-weight: 600; opacity: .85; }
+  .k-num { font-family: var(--num); font-size: 34px; font-weight: 700; line-height: 1.05; }
+  .k-sub { font-size: 13px; opacity: .8; }
+
+  /* ---------- panels ---------- */
+  .row2, .row3 { display: grid; gap: 12px; margin-top: 12px; }
+  .row2 { grid-template-columns: minmax(0, 1.75fr) minmax(0, 1fr); }
+  .row3 { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); margin-bottom: 14px; }
+  .panel { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; min-width: 0; }
+  .row3 .panel { height: 560px; display: flex; flex-direction: column; }
+  .ph { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 6px 12px; margin-bottom: 8px; }
+  h2 { font-family: var(--num); font-size: 21px; font-weight: 600; margin: 0; color: var(--navy); }
+  .hint { font-size: 13px; color: var(--muted); }
+  .legend { display: flex; gap: 12px; font-size: 13px; color: var(--muted); }
+  .sw { display: inline-block; width: 11px; height: 11px; border-radius: 2px; margin-right: 4px; vertical-align: -1px; }
+  .sw.g { background: var(--gold); }
+  .sw.n { background: var(--navy2); }
+
+  /* calendar */
+  .cal { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 5px; }
+  .cal-h { font-size: 12px; font-weight: 600; color: var(--muted); padding-left: 3px; }
+  .cd { border: 1px solid var(--line); background: #fff; border-radius: 7px; padding: 5px 7px 6px; text-align: left; display: flex; flex-direction: column; gap: 2px; min-height: 76px; }
+  .cd:hover { border-color: var(--navy2); background: #F8FAFC; }
+  .cd.on { background: var(--navy); border-color: var(--navy); color: #fff; box-shadow: inset 0 0 0 2px var(--gold); }
+  .cd.zero { color: var(--muted); }
+  .cd-date { font-size: 12px; font-weight: 600; opacity: .8; }
+  .cd-num { font-family: var(--num); font-size: 26px; font-weight: 700; line-height: 1; }
+  .cd-bar { display: flex; height: 6px; border-radius: 3px; background: var(--tint); overflow: hidden; }
+  .cd-bar i { display: block; height: 100%; }
+  .cd-bar .g { background: var(--gold); }
+  .cd-bar .n { background: var(--navy2); }
+  .cd.on .cd-bar { background: rgba(255,255,255,.2); }
+  .cd.on .cd-bar .n { background: #9FB6D6; }
+  .cd-split { font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .cd-split b { color: var(--gold-ink); }
+  .cd.on .cd-split b { color: var(--gold); }
+  .cal-note { font-size: 12px; color: var(--muted); margin: 6px 0 0; }
+
+  /* donut */
+  .donut-box { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; justify-content: center; padding-top: 6px; }
+  .donut-wrap { position: relative; width: 210px; height: 210px; }
+  .donut-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; pointer-events: none; text-align: center; }
+  .donut-center b { font-family: var(--num); font-size: 40px; line-height: 1; color: var(--navy); }
+  .donut-center span { font-size: 13px; color: var(--muted); }
+  .mlegend { display: grid; gap: 8px; min-width: 190px; }
+  .mrow { text-align: left; border: 1px solid var(--line); background: #fff; border-radius: 8px; padding: 8px 12px; display: grid; grid-template-columns: auto 1fr; column-gap: 8px; }
+  .mrow:hover { border-color: var(--navy2); }
+  .mrow[aria-pressed="true"] { box-shadow: inset 0 0 0 2px var(--gold); border-color: var(--gold); }
+  .mrow .sw { grid-row: span 2; width: 12px; height: 100%; min-height: 34px; border-radius: 3px; }
+  .mrow .m-t { font-weight: 600; font-size: 14px; }
+  .mrow .m-v { font-size: 13px; color: var(--muted); }
+  .mrow .m-v b { font-family: var(--num); font-size: 19px; color: var(--ink); }
+
+  /* terminals */
+  .term-scroll { flex: 1; overflow-y: auto; min-height: 0; }
+  .term-canvas { position: relative; }
+
+  /* list */
+  .search { font: inherit; font-size: 14px; padding: 5px 10px; border: 1px solid var(--line); border-radius: 6px; width: 220px; max-width: 100%; }
+  .tbl-wrap { flex: 1; overflow: auto; min-height: 0; border: 1px solid var(--line); border-radius: 8px; }
+  table { border-collapse: collapse; width: 100%; font-size: 14px; }
+  th { background: var(--navy); color: #fff; text-align: left; padding: 0; white-space: nowrap; font-weight: 600; position: sticky; top: 0; z-index: 1; }
+  th button { width: 100%; text-align: left; background: none; border: 0; color: #fff; padding: 7px 9px; font-weight: 600; }
+  th button:hover { background: var(--navy2); }
+  td { padding: 6px 9px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+  .trn { font-family: var(--num); font-size: 17px; font-weight: 600; letter-spacing: .4px; }
+  tr.sep td { background: var(--tint); font-weight: 700; color: var(--navy); position: sticky; top: 33px; }
+  tr.pm td { background: var(--gold-soft); }
+  tr.pm td:first-child { box-shadow: inset 5px 0 0 var(--gold); }
+  .badge { display: inline-block; font-size: 12px; padding: 1px 8px; border-radius: 10px; background: var(--tint); }
+  .badge.pm { background: #fff; border: 1px solid var(--gold); color: var(--gold-ink); font-weight: 600; }
+  .has-tip { text-decoration: underline dotted var(--muted); cursor: help; }
+  .empty { padding: 18px; color: var(--muted); }
+
+  .banner { margin: 12px 0 0; padding: 10px 14px; border-radius: 8px; background: #FBE9E7; color: #8A1F11; }
+  footer { margin: 4px 0 30px; font-size: 13px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px 18px; }
+
+  /* access gate */
+  .gate { position: fixed; inset: 0; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; padding: 20px; z-index: 10; }
+  .gate form { width: 100%; max-width: 380px; display: grid; gap: 10px; }
+  .gate h2 { color: #fff; font-size: 28px; }
+  .gate p { margin: 0; color: #C5D1E1; font-size: 14px; }
+  .gate input { font: inherit; padding: 9px 12px; border-radius: 6px; border: 0; }
+  .gate .go { background: var(--gold); color: var(--navy); border: 0; border-radius: 6px; padding: 9px 12px; font-weight: 700; }
+  .gate .err { color: #FFC9BE; min-height: 1.2em; }
+
+  @media (max-width: 1050px) {
+    .row2, .row3 { grid-template-columns: 1fr; }
+    .row3 .panel { height: auto; }
+    .term-scroll { max-height: 420px; }
+    .tbl-wrap { max-height: 70vh; }
+    .hdr-right { margin-left: 0; }
+  }
+  @media (max-width: 600px) {
+    .cd { min-height: 60px; padding: 4px; }
+    .cd-num { font-size: 20px; }
+    .cd-split { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="gate" id="gate" hidden>
+  <form id="gateForm" autocomplete="off">
+    <h2>Festival specials dashboard</h2>
+    <p>Enter the access key for the Delhi Division notified specials data.</p>
+    <input type="password" id="gateKey" aria-label="Access key" placeholder="Access key" required>
+    <button class="go" type="submit">Open dashboard</button>
+    <p class="err" id="gateErr" role="alert"></p>
+  </form>
+</div>
+
+<header class="band">
+  <div class="wrap hdr">
+    <h1>Festival specials over Delhi Division<span class="stamp" id="stamp">Loading data…</span></h1>
+    <div class="seg" role="group" aria-label="Period">
+      <button type="button" data-period="festival" aria-pressed="true">Diwali &amp; Chhath<small>03 Nov to 15 Nov</small></button>
+      <button type="button" data-period="dussehra" aria-pressed="false">Dussehra / Durga Puja<small>17 Oct to 20 Oct</small></button>
+      <button type="button" data-period="custom" aria-pressed="false">Custom<small>Pick dates</small></button>
+    </div>
+    <div class="dates">
+      <label>From <input type="date" id="fromDate"></label>
+      <label>To <input type="date" id="toDate"></label>
+    </div>
+    <div class="hdr-right">
+      <button class="ghost" type="button" id="refresh">Refresh data</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div id="banner" class="banner" role="alert" hidden></div>
+
+  <div class="fbar">
+    <div class="fgroup" role="group" aria-label="Direction">
+      <span class="flabel">Direction</span>
+      <span id="dirChips" class="fgroup"></span>
+    </div>
+    <div class="fgroup">
+      <span class="flabel">Trains</span>
+      <span class="lseg" role="group" aria-label="Originating or passing">
+        <button type="button" data-status="Originating">Originating</button>
+        <button type="button" data-status="Passing">Passing</button>
+        <button type="button" data-status="Both">Both</button>
+      </span>
+    </div>
+    <div class="fgroup" id="activeChips"></div>
+  </div>
+
+  <p class="ctx" id="kpiCtx"></p>
+  <div class="kpis" id="kpis"></div>
+
+  <div class="row2">
+    <section class="panel" aria-labelledby="h-cal">
+      <div class="ph">
+        <h2 id="h-cal">Originating trips per day</h2>
+        <span class="legend"><span><span class="sw g"></span>PM at DLI</span><span><span class="sw n"></span>PM at other ends</span></span>
+      </div>
+      <div class="cal" id="cal"></div>
+      <p class="cal-note" id="calNote"></p>
+    </section>
+
+    <section class="panel" aria-labelledby="h-maint">
+      <div class="ph">
+        <h2 id="h-maint">Maintenance</h2>
+        <span class="hint">Select a slice to filter</span>
+      </div>
+      <div class="donut-box">
+        <div class="donut-wrap">
+          <canvas id="donut" aria-label="Maintenance split chart" role="img"></canvas>
+          <div class="donut-center"><b id="donutNum">0</b><span id="donutLbl">trains</span></div>
+        </div>
+        <div class="mlegend" id="mlegend"></div>
+      </div>
+    </section>
+  </div>
+
+  <div class="row3">
+    <section class="panel" aria-labelledby="h-term">
+      <div class="ph">
+        <h2 id="h-term">Trips by DLI Division terminal</h2>
+        <span class="hint">Select a bar</span>
+      </div>
+      <div class="term-scroll">
+        <div class="term-canvas" id="termBox"><canvas id="termChart" aria-label="Trips by terminal chart" role="img"></canvas></div>
+        <div class="empty" id="termEmpty" hidden>No trains for this selection.</div>
+      </div>
+    </section>
+
+    <section class="panel" aria-labelledby="h-list">
+      <div class="ph">
+        <div>
+          <h2 id="h-list">Trains</h2>
+          <span class="hint" id="listHint"></span>
+        </div>
+        <input type="search" class="search" id="search" placeholder="Search train, station, SCN" aria-label="Search trains">
+      </div>
+      <div class="tbl-wrap" id="list"></div>
+    </section>
+  </div>
+
+  <footer>
+    <span>Trains are distinct train numbers; trips are individual runs in the selected dates.</span>
+    <span id="skipped"></span>
+    <button class="linkbtn" type="button" id="changeKey">Change access key</button>
+  </footer>
+</main>
+
+<script>
+/* ===================== CONFIG ===================== */
+// Paste your Apps Script web app /exec URL here.
+const API_URL = 'PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE';
+const KEY_STORE = 'dliFestDashKey';
+
+const PERIODS = {
+  festival: { from: '2026-11-03', to: '2026-11-15' },
+  dussehra: { from: '2026-10-17', to: '2026-10-20' }
+};
+const DIR_ORDER = ['East', 'West', 'North', 'South'];
+const MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const DOW = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+const CAL_MAX_DAYS = 62;
+const C = { navy: '#0E2747', navy2: '#1F4573', gold: '#C9A23A', goldFade: 'rgba(201,162,58,.28)', navyFade: 'rgba(31,69,115,.22)' };
+
+/* ===================== STATE ===================== */
+let ROWS = [];
+const S = {
+  period: 'festival', from: PERIODS.festival.from, to: PERIODS.festival.to,
+  day: null, dir: 'East', status: 'Originating', maint: 'ALL', terminal: 'ALL',
+  q: '', sort: 'when', asc: true
+};
+const $ = id => document.getElementById(id);
+
+/* ===================== UTILS ===================== */
+function esc(s) {
+  return String(s == null ? '' : s).replace(/[&<>"']/g, c =>
+    ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+function tally(rows) { const t = new Set(); rows.forEach(r => t.add(r.train)); return { trips: rows.length, trains: t.size }; }
+function groupBy(rows, key) {
+  const m = new Map();
+  rows.forEach(r => { const k = r[key]; if (!m.has(k)) m.set(k, []); m.get(k).push(r); });
+  return m;
+}
+function dObj(iso) { return new Date(iso + 'T00:00:00Z'); }
+function addDays(iso, n) { const d = dObj(iso); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); }
+function fmtShort(iso) { const d = dObj(iso); return String(d.getUTCDate()).padStart(2, '0') + ' ' + MON[d.getUTCMonth()]; }
+function fmtLong(iso) { const d = dObj(iso); return DOW[d.getUTCDay()] + ', ' + fmtShort(iso) + ' ' + d.getUTCFullYear(); }
+function fmtRange(a, b) { return a === b ? fmtLong(a) : fmtShort(a) + ' to ' + fmtShort(b) + ' ' + dObj(b).getUTCFullYear(); }
+function plural(n, w) { return n + ' ' + w + (n === 1 ? '' : 's'); }
+function mins(t) { if (!t) return 9999; const p = t.split(':'); return (+p[0]) * 60 + (+p[1]); }
+function dirRank(d) { const i = DIR_ORDER.indexOf(d); return i < 0 ? 99 : i; }
+function dirLabel(d) { return DIR_ORDER.includes(d) ? d + ' bound' : d; }
+function pct(a, b) { return b ? Math.round(a / b * 100) : 0; }
+function getKey() { try { return localStorage.getItem(KEY_STORE) || ''; } catch (e) { return ''; } }
+function setKey(k) { try { k ? localStorage.setItem(KEY_STORE, k) : localStorage.removeItem(KEY_STORE); } catch (e) {} }
+
+/** Rows matching every active filter except the dimensions listed in `skip`. */
+function scope(skip) {
+  skip = skip || {};
+  return ROWS.filter(r =>
+    r.date >= S.from && r.date <= S.to &&
+    (skip.day || !S.day || r.date === S.day) &&
+    (skip.dir || S.dir === 'ALL' || r.dir === S.dir) &&
+    (skip.status || S.status === 'Both' || r.status === S.status) &&
+    (skip.maint || S.maint === 'ALL' || (S.maint === 'DLI' ? r.pmDLI : !r.pmDLI)) &&
+    (skip.term || S.terminal === 'ALL' || r.terminal === S.terminal));
+}
+function ctxText(opts) {
+  opts = opts || {};
+  const p = [S.dir === 'ALL' ? 'All directions' : dirLabel(S.dir)];
+  if (!opts.noStatus) p.push(S.status === 'Both' ? 'originating and passing' : S.status.toLowerCase());
+  if (!opts.noTerm && S.terminal !== 'ALL') p.push(S.terminal);
+  if (!opts.noMaint && S.maint !== 'ALL') p.push(S.maint === 'DLI' ? 'PM at DLI' : 'PM at other ends');
+  p.push(!opts.noDay && S.day ? fmtLong(S.day) : fmtRange(S.from, S.to));
+  return p.join(', ');
+}
+
+/* ===================== DATA ===================== */
+function showGate(msg) {
+  $('gate').hidden = false;
+  $('gateErr').textContent = msg || '';
+  $('gateKey').value = '';
+  setTimeout(() => $('gateKey').focus(), 0);
+}
+function banner(msg) { $('banner').textContent = msg || ''; $('banner').hidden = !msg; }
+
+async function load() {
+  if (API_URL.indexOf('PASTE_') === 0) {
+    banner('Set API_URL at the top of index.html to your Apps Script web app URL.');
+    $('stamp').textContent = 'No data feed configured.';
+    return;
+  }
+  const key = getKey();
+  if (!key) { showGate(); return; }
+
+  const btn = $('refresh');
+  btn.disabled = true; btn.textContent = 'Refreshing…';
+  try {
+    const res = await fetch(API_URL + '?key=' + encodeURIComponent(key) + '&_=' + Date.now());
+    const d = await res.json();
+    if (!d.ok) {
+      if (d.error === 'unauthorized') { setKey(''); showGate('That access key was not accepted.'); }
+      else if (d.error === 'not_configured') banner('The data feed has no access key yet. Run setDashKey() once in Apps Script.');
+      else banner('The data feed returned an error: ' + (d.message || d.error));
+      return;
+    }
+    $('gate').hidden = true;
+    banner('');
+    ROWS = (d.rows || []).map(r => Object.assign(r, { mins: mins(r.time) }));
+    $('stamp').textContent = 'Notified trains, data as on ' + d.generated;
+    const sk = d.skipped || [];
+    $('skipped').innerHTML = sk.length
+      ? '<span class="has-tip" title="' + esc(sk.map(s => 'Row ' + s.row + ' (' + s.train + ')').join(', ')) + '">'
+        + plural(sk.length, 'sheet row') + ' skipped for an unreadable date</span>'
+      : '';
+    if (!ROWS.length) banner('No rows with a train number and a readable date were found in the Notified sheet.');
+    render();
+  } catch (err) {
+    banner('Could not reach the data feed. Check API_URL and that the web app is deployed with access set to Anyone.');
+  } finally {
+    btn.disabled = false; btn.textContent = 'Refresh data';
+  }
+}
+
+/* ===================== EVENTS ===================== */
+$('gateForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const k = $('gateKey').value.trim();
+  if (!k) return;
+  setKey(k);
+  $('gateErr').textContent = 'Checking…';
+  load();
+});
+$('changeKey').addEventListener('click', () => { setKey(''); showGate(); });
+$('refresh').addEventListener('click', load);
+
+function onDateChange() {
+  let a = $('fromDate').value, b = $('toDate').value;
+  if (!a || !b) return;
+  if (a > b) { const t = a; a = b; b = t; }
+  S.from = a; S.to = b; S.day = null;
+  S.period = Object.keys(PERIODS).find(k => PERIODS[k].from === a && PERIODS[k].to === b) || 'custom';
+  render();
+}
+$('fromDate').addEventListener('change', onDateChange);
+$('toDate').addEventListener('change', onDateChange);
+
+let searchTimer;
+$('search').addEventListener('input', e => {
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(() => { S.q = e.target.value.trim(); render(); }, 150);
+});
+
+document.addEventListener('click', e => {
+  const t = e.target.closest('[data-period],[data-day],[data-dir],[data-status],[data-maint],[data-clear],[data-sort]');
+  if (!t) return;
+  const ds = t.dataset;
+  if (ds.period) {
+    if (ds.period === 'custom') { S.period = 'custom'; render(); $('fromDate').focus(); return; }
+    S.period = ds.period; S.from = PERIODS[ds.period].from; S.to = PERIODS[ds.period].to; S.day = null;
+  } else if (ds.day) {
+    S.day = S.day === ds.day ? null : ds.day;
+  } else if (ds.dir) {
+    S.dir = ds.dir;
+  } else if (ds.status) {
+    S.status = ds.status;
+  } else if (ds.maint) {
+    S.maint = S.maint === ds.maint ? 'ALL' : ds.maint;
+  } else if (ds.clear) {
+    if (ds.clear === 'day') S.day = null;
+    if (ds.clear === 'maint') S.maint = 'ALL';
+    if (ds.clear === 'term') S.terminal = 'ALL';
+    if (ds.clear === 'q') { S.q = ''; $('search').value = ''; }
+    if (ds.clear === 'all') { S.day = null; S.maint = 'ALL'; S.terminal = 'ALL'; S.q = ''; $('search').value = ''; }
+  } else if (ds.sort) {
+    if (S.sort === ds.sort) S.asc = !S.asc; else { S.sort = ds.sort; S.asc = true; }
+  }
+  render();
+});
+
+/* ===================== CHARTS ===================== */
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+Chart.defaults.font.family = "'Source Sans 3', system-ui, sans-serif";
+Chart.defaults.color = '#586879';
+Chart.defaults.animation = reduceMotion ? false : { duration: 250 };
+
+const donut = new Chart($('donut'), {
+  type: 'doughnut',
+  data: {
+    labels: ['PM at DLI', 'PM at other ends'],
+    datasets: [{ data: [0, 0], backgroundColor: [C.gold, C.navy2], borderColor: '#fff', borderWidth: 2, hoverOffset: 6 }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false, cutout: '64%',
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: c => ' ' + c.label + ': ' + plural(c.raw, 'train') + ' (' + (donut.$trips ? donut.$trips[c.dataIndex] : 0) + ' trips)' } }
+    },
+    onHover: (e, els) => { e.native.target.style.cursor = els.length ? 'pointer' : 'default'; },
+    onClick: (e, els) => {
+      if (!els.length) return;
+      const k = els[0].index === 0 ? 'DLI' : 'OTHER';
+      S.maint = S.maint === k ? 'ALL' : k;
+      render();
+    }
+  }
+});
+
+const termChart = new Chart($('termChart'), {
+  type: 'bar',
+  data: { labels: [], datasets: [
+    { label: 'PM at DLI', data: [], backgroundColor: [], stack: 's', borderRadius: 2, maxBarThickness: 22 },
+    { label: 'PM at other ends', data: [], backgroundColor: [], stack: 's', borderRadius: 2, maxBarThickness: 22 }
+  ] },
+  options: {
+    indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+    interaction: { mode: 'y', intersect: false },
+    scales: {
+      x: { stacked: true, beginAtZero: true, ticks: { precision: 0 }, grid: { color: '#EEF1F5' } },
+      y: { stacked: true, grid: { display: false }, ticks: { color: '#0E2747', font: { family: "'Barlow Condensed', sans-serif", size: 16, weight: '700' } } }
+    },
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: {
+        title: items => items[0].label,
+        footer: items => {
+          const i = items[0].dataIndex;
+          return 'Total: ' + plural(termChart.$trains[i], 'train') + ', ' + plural(termChart.$trips[i], 'trip');
+        }
+      } }
+    },
+    onHover: (e, els) => { e.native.target.style.cursor = els.length ? 'pointer' : 'default'; },
+    onClick: (e, els, chart) => {
+      const pts = chart.getElementsAtEventForMode(e, 'y', { intersect: false }, false);
+      if (!pts.length) return;
+      const k = chart.data.labels[pts[0].index];
+      S.terminal = S.terminal === k ? 'ALL' : k;
+      render();
+    }
+  }
+});
+
+/* ===================== RENDER ===================== */
+function render() {
+  document.querySelectorAll('[data-period]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.period === S.period)));
+  document.querySelectorAll('[data-status]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.status === S.status)));
+  $('fromDate').value = S.from;
+  $('toDate').value = S.to;
+  renderDirChips();
+  renderActiveChips();
+  renderKPIs();
+  renderCalendar();
+  renderDonut();
+  renderTerminals();
+  renderList();
+}
+
+function renderDirChips() {
+  const g = groupBy(scope({ dir: 1 }), 'dir');
+  const dirs = [...g.keys()];
+  if (!dirs.includes('East')) dirs.push('East');
+  dirs.sort((a, b) => dirRank(a) - dirRank(b) || a.localeCompare(b));
+  const chip = (k, label, n, cls) =>
+    '<button type="button" class="dchip' + (cls ? ' ' + cls : '') + '" data-dir="' + esc(k) + '" aria-pressed="' + (S.dir === k) + '">'
+    + esc(label) + '<b>' + n + '</b></button>';
+  $('dirChips').innerHTML = dirs.map(d => chip(d, d, tally(g.get(d) || []).trains, d === 'East' ? 'east' : '')).join('')
+    + chip('ALL', 'All', tally(scope({ dir: 1 })).trains, '');
+}
+
+function renderActiveChips() {
+  const chips = [];
+  const chip = (label, key) => '<span class="achip">' + esc(label) + '<button type="button" data-clear="' + key + '" aria-label="Remove filter ' + esc(label) + '">×</button></span>';
+  if (S.day) chips.push(chip(fmtLong(S.day), 'day'));
+  if (S.maint !== 'ALL') chips.push(chip(S.maint === 'DLI' ? 'PM at DLI' : 'PM at other ends', 'maint'));
+  if (S.terminal !== 'ALL') chips.push(chip('Terminal ' + S.terminal, 'term'));
+  if (S.q) chips.push(chip('Search: ' + S.q, 'q'));
+  if (chips.length > 1) chips.push('<button type="button" class="linkbtn" data-clear="all">Clear all</button>');
+  $('activeChips').innerHTML = chips.join('');
+}
+
+function renderKPIs() {
+  const rows = scope({ maint: 1 });
+  const all = tally(rows);
+  const pm = tally(rows.filter(r => r.pmDLI));
+  const ot = tally(rows.filter(r => !r.pmDLI));
+  const terms = new Set(rows.map(r => r.terminal)).size;
+  let peak = null;
+  groupBy(rows, 'date').forEach((list, d) => { if (!peak || list.length > peak.n) peak = { d, n: list.length }; });
+
+  $('kpiCtx').textContent = ctxText({ noMaint: true });
+  const card = (cls, label, num, sub) =>
+    '<div class="kpi ' + cls + '"><div class="k-label">' + label + '</div><div class="k-num">' + num + '</div><div class="k-sub">' + sub + '</div></div>';
+  $('kpis').innerHTML =
+    card('lead', 'Trains', all.trains, plural(all.trips, 'trip'))
+    + card('gold', 'PM at DLI', pm.trains, plural(pm.trips, 'trip') + ', ' + pct(pm.trips, all.trips) + '% of trips')
+    + card('navy', 'PM at other ends', ot.trains, plural(ot.trips, 'trip') + ', ' + pct(ot.trips, all.trips) + '% of trips')
+    + card('', 'Terminals in use', terms, S.terminal !== 'ALL' ? 'filtered to ' + esc(S.terminal) : 'DLI Division')
+    + card('', 'Busiest day', peak ? fmtShort(peak.d) : '–', peak ? plural(peak.n, 'trip') : 'No trips');
+}
+
+function renderCalendar() {
+  // Always originating trips, total for the day; maintenance shown as a split, not a filter.
+  const rows = scope({ day: 1, maint: 1, status: 1 }).filter(r => r.status === 'Originating');
+  const byDate = groupBy(rows, 'date');
+  const days = [];
+  for (let d = S.from; d <= S.to && days.length < CAL_MAX_DAYS; d = addDays(d, 1)) days.push(d);
+
+  let max = 1;
+  days.forEach(d => { const n = (byDate.get(d) || []).length; if (n > max) max = n; });
+
+  let html = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].map(w => '<div class="cal-h">' + w + '</div>').join('');
+  const lead = (dObj(days[0]).getUTCDay() + 6) % 7;
+  for (let i = 0; i < lead; i++) html += '<div></div>';
+
+  days.forEach((d, i) => {
+    const list = byDate.get(d) || [];
+    const n = list.length;
+    const pm = list.filter(r => r.pmDLI).length;
+    const ot = n - pm;
+    const dd = dObj(d);
+    const label = dd.getUTCDate() + ((i === 0 || dd.getUTCDate() === 1) ? ' ' + MON[dd.getUTCMonth()] : '');
+    const tip = fmtLong(d) + ': ' + plural(n, 'originating trip') + ' (' + pm + ' PM at DLI, ' + ot + ' PM at other ends)';
+    html += '<button type="button" class="cd' + (S.day === d ? ' on' : '') + (n ? '' : ' zero') + '" data-day="' + d + '"'
+      + ' aria-pressed="' + (S.day === d) + '" title="' + esc(tip) + '" aria-label="' + esc(tip) + '">'
+      + '<span class="cd-date">' + label + '</span>'
+      + '<span class="cd-num">' + n + '</span>'
+      + '<span class="cd-bar"><i class="g" style="width:' + (pm / max * 100).toFixed(1) + '%"></i><i class="n" style="width:' + (ot / max * 100).toFixed(1) + '%"></i></span>'
+      + '<span class="cd-split"><b>' + pm + '</b> DLI, ' + ot + ' other</span>'
+      + '</button>';
+  });
+  $('cal').innerHTML = html;
+
+  const totalDays = Math.round((dObj(S.to) - dObj(S.from)) / 86400000) + 1;
+  $('calNote').textContent = ctxText({ noStatus: true, noMaint: true, noDay: true })
+    + '. Select a day to filter the whole page; select it again to clear.'
+    + (totalDays > CAL_MAX_DAYS ? ' Showing the first ' + CAL_MAX_DAYS + ' days.' : '');
+}
+
+function renderDonut() {
+  const rows = scope({ maint: 1 });
+  const pm = tally(rows.filter(r => r.pmDLI));
+  const ot = tally(rows.filter(r => !r.pmDLI));
+  const ds = donut.data.datasets[0];
+  ds.data = [pm.trains, ot.trains];
+  ds.backgroundColor = [
+    S.maint === 'OTHER' ? C.goldFade : C.gold,
+    S.maint === 'DLI' ? C.navyFade : C.navy2
+  ];
+  donut.$trips = [pm.trips, ot.trips];
+  donut.update();
+
+  const shown = S.maint === 'DLI' ? pm : S.maint === 'OTHER' ? ot : tally(rows);
+  $('donutNum').textContent = shown.trains;
+  $('donutLbl').textContent = (shown.trains === 1 ? 'train' : 'trains') + ', ' + plural(shown.trips, 'trip');
+
+  const total = pm.trains + ot.trains;
+  const row = (key, sw, label, t) =>
+    '<button type="button" class="mrow" data-maint="' + key + '" aria-pressed="' + (S.maint === key) + '">'
+    + '<span class="sw ' + sw + '"></span><span class="m-t">' + label + '</span>'
+    + '<span class="m-v"><b>' + t.trains + '</b> ' + (t.trains === 1 ? 'train' : 'trains') + ', ' + plural(t.trips, 'trip') + ' (' + pct(t.trains, total) + '%)</span>'
+    + '</button>';
+  $('mlegend').innerHTML = row('DLI', 'g', 'PM at DLI Division', pm) + row('OTHER', 'n', 'PM at other ends', ot);
+}
+
+function renderTerminals() {
+  const rows = scope({ term: 1 });
+  const g = groupBy(rows, 'terminal');
+  const e = [...g.entries()].map(([k, list]) => {
+    const pm = list.filter(r => r.pmDLI).length;
+    return { k, pm, ot: list.length - pm, trips: list.length, trains: tally(list).trains };
+  }).sort((a, b) => b.trips - a.trips || a.k.localeCompare(b.k));
+
+  $('termEmpty').hidden = e.length > 0;
+  $('termBox').style.display = e.length ? '' : 'none';
+  $('termBox').style.height = Math.max(160, e.length * 34 + 40) + 'px';
+
+  const on = k => S.terminal === 'ALL' || S.terminal === k;
+  termChart.data.labels = e.map(x => x.k);
+  termChart.data.datasets[0].data = e.map(x => x.pm);
+  termChart.data.datasets[1].data = e.map(x => x.ot);
+  termChart.data.datasets[0].backgroundColor = e.map(x => on(x.k) ? C.gold : C.goldFade);
+  termChart.data.datasets[1].backgroundColor = e.map(x => on(x.k) ? C.navy2 : C.navyFade);
+  termChart.$trains = e.map(x => x.trains);
+  termChart.$trips = e.map(x => x.trips);
+  termChart.update();
+  termChart.resize();
+}
+
+const SORTERS = {
+  when: (a, b) => a.date.localeCompare(b.date) || a.mins - b.mins || a.train.localeCompare(b.train),
+  train: (a, b) => a.train.localeCompare(b.train) || SORTERS.when(a, b),
+  from: (a, b) => a.from.localeCompare(b.from) || SORTERS.when(a, b),
+  to: (a, b) => a.to.localeCompare(b.to) || SORTERS.when(a, b),
+  terminal: (a, b) => a.terminal.localeCompare(b.terminal) || SORTERS.when(a, b),
+  status: (a, b) => a.status.localeCompare(b.status) || SORTERS.when(a, b),
+  maint: (a, b) => (b.pmDLI - a.pmDLI) || a.maint.localeCompare(b.maint) || SORTERS.when(a, b)
+};
+
+function renderList() {
+  let rows = scope({});
+  if (S.q) {
+    const q = S.q.toLowerCase();
+    rows = rows.filter(r => [r.train, r.from, r.to, r.terminal, r.scn, r.maint].some(v => String(v).toLowerCase().includes(q)));
+  }
+  $('h-list').textContent = S.terminal === 'ALL' ? 'Trains at all terminals' : 'Trains from ' + S.terminal;
+  const t = tally(rows);
+  $('listHint').textContent = ctxText({ noTerm: true }) + '. ' + plural(t.trains, 'train') + ', ' + plural(t.trips, 'trip') + '.';
+
+  if (!rows.length) {
+    $('list').innerHTML = '<div class="empty">No trains match these filters.'
+      + (S.terminal !== 'ALL' || S.q || S.day || S.maint !== 'ALL' ? ' <button class="linkbtn" type="button" data-clear="all">Clear filters</button>' : '') + '</div>';
+    return;
+  }
+
+  const sorted = rows.slice().sort(SORTERS[S.sort]);
+  if (!S.asc) sorted.reverse();
+  const grouped = S.sort === 'when';
+  const perDay = grouped ? groupBy(sorted, 'date') : null;
+
+  const th = (key, label) => '<th aria-sort="' + (S.sort === key ? (S.asc ? 'ascending' : 'descending') : 'none') + '">'
+    + (key ? '<button type="button" data-sort="' + key + '">' + label + (S.sort === key ? (S.asc ? ' ▲' : ' ▼') : '') + '</button>' : '<button type="button" tabindex="-1" disabled>' + label + '</button>')
+    + '</th>';
+
+  let html = '<table><thead><tr>'
+    + th('when', 'Date / time') + th('train', 'Train No.') + th('from', 'From') + th('to', 'To')
+    + th('terminal', 'Terminal') + th('', 'Dir.') + th('status', 'Orig./Pass.') + th('maint', 'Maintenance')
+    + th('', 'Load') + th('', 'SCN No.')
+    + '</tr></thead><tbody>';
+
+  let last = '';
+  sorted.forEach(r => {
+    if (grouped && r.date !== last) {
+      last = r.date;
+      const dl = perDay.get(r.date);
+      const dpm = dl.filter(x => x.pmDLI).length;
+      html += '<tr class="sep"><td colspan="10">' + esc(fmtLong(r.date)) + ' — ' + plural(dl.length, 'trip') + (dpm ? ', ' + dpm + ' PM at DLI' : '') + '</td></tr>';
+    }
+    html += '<tr' + (r.pmDLI ? ' class="pm"' : '') + '>'
+      + '<td>' + (grouped ? '' : esc(fmtShort(r.date)) + ' ') + esc(r.time || '–') + '</td>'
+      + '<td class="trn">' + esc(r.train) + '</td>'
+      + '<td>' + esc(r.from) + '</td>'
+      + '<td>' + esc(r.to) + '</td>'
+      + '<td>' + esc(r.terminal) + '</td>'
+      + '<td>' + esc(r.dir) + '</td>'
+      + '<td>' + esc(r.status) + '</td>'
+      + '<td><span class="badge' + (r.pmDLI ? ' pm' : '') + '">' + esc(r.maint) + '</span></td>'
+      + '<td>' + (r.loadDetails ? '<span class="has-tip" title="' + esc(r.loadDetails) + '">' + esc(r.load || 'Details') + '</span>' : esc(r.load)) + '</td>'
+      + '<td>' + esc(r.scn) + '</td>'
+      + '</tr>';
+  });
+  html += '</tbody></table>';
+  $('list').innerHTML = html;
+}
+
+render();
+load();
+</script>
+</body>
+</html>
