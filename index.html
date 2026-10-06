@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Festival Rush 2026 | Notified Specials, Delhi Division</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js"></script>
+<style>
+  :root {
+    --navy: #0E2747;
+    --navy2: #1F4573;
+    --gold: #C9A23A;
+    --gold-soft: #F8EFD6;
+    --gold-ink: #6E510A;
+    --paper: #F2F4F7;
+    --ink: #15202E;
+    --muted: #586879;
+    --line: #DAE0E8;
+    --tint: #EAEFF5;
+    --focus: #2F6FD6;
+    --num: 'Barlow Condensed', 'Arial Narrow', Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body { background: var(--paper); color: var(--ink); font: 15px/1.45 'Source Sans 3', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; }
+  button { font: inherit; color: inherit; cursor: pointer; }
+  button:focus-visible, input:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+  .wrap { max-width: 1440px; margin: 0 auto; padding: 0 18px; }
+
+  /* ---------- header ---------- */
+  .band { background: var(--navy); color: #fff; border-bottom: 4px solid var(--gold); }
+  .hdr { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 22px; padding: 12px 0; }
+  h1 { font-family: var(--num); font-weight: 700; font-size: 26px; line-height: 1.05; margin: 0; }
+  .stamp { display: block; font-family: 'Source Sans 3', sans-serif; font-weight: 400; font-size: 13px; color: #BFCBDA; }
+  .seg { display: inline-flex; border: 1px solid rgba(255,255,255,.3); border-radius: 8px; overflow: hidden; }
+  .seg button { background: transparent; border: 0; color: #fff; padding: 6px 14px; text-align: left; line-height: 1.2; }
+  .seg button + button { border-left: 1px solid rgba(255,255,255,.2); }
+  .seg button small { display: block; font-size: 12px; opacity: .75; }
+  .seg button:hover { background: rgba(255,255,255,.08); }
+  .seg button[aria-pressed="true"] { background: #fff; color: var(--navy); box-shadow: inset 0 -3px 0 var(--gold); }
+  .seg button[aria-pressed="true"] small { opacity: .8; }
+  .dates { display: flex; gap: 8px; align-items: center; font-size: 13px; color: #C9D4E3; }
+  .dates input { font: inherit; font-size: 14px; padding: 5px 8px; border: 0; border-radius: 6px; color: var(--ink); background: #fff; }
+  .hdr-right { margin-left: auto; display: flex; gap: 8px; }
+  .ghost { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,.45); border-radius: 6px; padding: 6px 12px; font-size: 14px; }
+  .ghost:hover { background: rgba(255,255,255,.08); }
+  .ghost:disabled { opacity: .6; cursor: wait; }
+
+  /* ---------- filter bar ---------- */
+  .fbar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; margin: 12px 0; }
+  .fgroup { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+  .flabel { font-size: 13px; font-weight: 600; color: var(--muted); margin-right: 2px; }
+  .dchip { border: 1px solid var(--line); background: #fff; border-radius: 18px; padding: 3px 12px; font-size: 14px; }
+  .dchip b { font-family: var(--num); font-size: 17px; margin-left: 4px; }
+  .dchip.east { border-color: var(--gold); font-weight: 700; }
+  .dchip[aria-pressed="true"] { background: var(--navy); border-color: var(--navy); color: #fff; }
+  .lseg { display: inline-flex; border: 1px solid var(--line); border-radius: 18px; overflow: hidden; background: #fff; }
+  .lseg button { border: 0; background: transparent; padding: 3px 12px; font-size: 14px; }
+  .lseg button[aria-pressed="true"] { background: var(--navy); color: #fff; }
+  .achip { display: inline-flex; align-items: center; gap: 6px; background: var(--gold-soft); border: 1px solid var(--gold); color: var(--gold-ink); border-radius: 18px; padding: 2px 4px 2px 12px; font-size: 14px; font-weight: 600; }
+  .achip button { border: 0; background: transparent; color: var(--gold-ink); width: 22px; height: 22px; border-radius: 50%; line-height: 1; font-size: 16px; }
+  .achip button:hover { background: rgba(201,162,58,.25); }
+  .linkbtn { background: none; border: 0; color: var(--focus); text-decoration: underline; padding: 0; font-size: 14px; }
+
+  /* ---------- KPI strip ---------- */
+  .ctx { font-size: 13px; color: var(--muted); margin: 0 0 6px; }
+  .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px; }
+  .kpi { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; }
+  .kpi.lead { background: var(--navy); color: #fff; border-color: var(--navy); }
+  .kpi.gold { border-left: 6px solid var(--gold); }
+  .kpi.navy { border-left: 6px solid var(--navy2); }
+  .k-label { font-size: 13px; font-weight: 600; opacity: .85; }
+  .k-num { font-family: var(--num); font-size: 34px; font-weight: 700; line-height: 1.05; }
+  .k-sub { font-size: 13px; opacity: .8; }
+
+  /* ---------- panels ---------- */
+  .row2, .row3 { display: grid; gap: 12px; margin-top: 12px; }
+  .row2 { grid-template-columns: minmax(0, 1.75fr) minmax(0, 1fr); }
+  .row3 { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); margin-bottom: 14px; }
+  .panel { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; min-width: 0; }
+  .row3 .panel { height: 560px; display: flex; flex-direction: column; }
+  .ph { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 6px 12px; margin-bottom: 8px; }
+  h2 { font-family: var(--num); font-size: 21px; font-weight: 600; margin: 0; color: var(--navy); }
+  .hint { font-size: 13px; color: var(--muted); }
+  .legend { display: flex; gap: 12px; font-size: 13px; color: var(--muted); }
+  .sw { display: inline-block; width: 11px; height: 11px; border-radius: 2px; margin-right: 4px; vertical-align: -1px; }
+  .sw.g { background: var(--gold); }
+  .sw.n { background: var(--navy2); }
+
+  /* calendar */
+  .cal { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 5px; }
+  .cal-h { font-size: 12px; font-weight: 600; color: var(--muted); padding-left: 3px; }
+  .cd { border: 1px solid var(--line); background: #fff; border-radius: 7px; padding: 5px 7px 6px; text-align: left; display: flex; flex-direction: column; gap: 2px; min-height: 76px; }
+  .cd:hover { border-color: var(--navy2); background: #F8FAFC; }
+  .cd.on { background: var(--navy); border-color: var(--navy); color: #fff; box-shadow: inset 0 0 0 2px var(--gold); }
+  .cd.zero { color: var(--muted); }
+  .cd-date { font-size: 12px; font-weight: 600; opacity: .8; }
+  .cd-num { font-family: var(--num); font-size: 26px; font-weight: 700; line-height: 1; }
+  .cd-bar { display: flex; height: 6px; border-radius: 3px; background: var(--tint); overflow: hidden; }
+  .cd-bar i { display: block; height: 100%; }
+  .cd-bar .g { background: var(--gold); }
+  .cd-bar .n { background: var(--navy2); }
+  .cd.on .cd-bar { background: rgba(255,255,255,.2); }
+  .cd.on .cd-bar .n { background: #9FB6D6; }
+  .cd-split { font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .cd-split b { color: var(--gold-ink); }
+  .cd.on .cd-split b { color: var(--gold); }
+  .cal-note { font-size: 12px; color: var(--muted); margin: 6px 0 0; }
+
+  /* donut */
+  .donut-box { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; justify-content: center; padding-top: 6px; }
+  .donut-wrap { position: relative; width: 210px; height: 210px; }
+  .donut-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; pointer-events: none; text-align: center; }
+  .donut-center b { font-family: var(--num); font-size: 40px; line-height: 1; color: var(--navy); }
+  .donut-center span { font-size: 13px; color: var(--muted); }
+  .mlegend { display: grid; gap: 8px; min-width: 190px; }
+  .mrow { text-align: left; border: 1px solid var(--line); background: #fff; border-radius: 8px; padding: 8px 12px; display: grid; grid-template-columns: auto 1fr; column-gap: 8px; }
+  .mrow:hover { border-color: var(--navy2); }
+  .mrow[aria-pressed="true"] { box-shadow: inset 0 0 0 2px var(--gold); border-color: var(--gold); }
+  .mrow .sw { grid-row: span 2; width: 12px; height: 100%; min-height: 34px; border-radius: 3px; }
+  .mrow .m-t { font-weight: 600; font-size: 14px; }
+  .mrow .m-v { font-size: 13px; color: var(--muted); }
+  .mrow .m-v b { font-family: var(--num); font-size: 19px; color: var(--ink); }
+
+  /* terminals */
+  .term-scroll { flex: 1; overflow-y: auto; min-height: 0; }
+  .term-canvas { position: relative; }
+
+  /* list */
+  .search { font: inherit; font-size: 14px; padding: 5px 10px; border: 1px solid var(--line); border-radius: 6px; width: 220px; max-width: 100%; }
+  .tbl-wrap { flex: 1; overflow: auto; min-height: 0; border: 1px solid var(--line); border-radius: 8px; }
+  table { border-collapse: collapse; width: 100%; font-size: 14px; }
+  th { background: var(--navy); color: #fff; text-align: left; padding: 0; white-space: nowrap; font-weight: 600; position: sticky; top: 0; z-index: 1; }
+  th button { width: 100%; text-align: left; background: none; border: 0; color: #fff; padding: 7px 9px; font-weight: 600; }
+  th button:hover { background: var(--navy2); }
+  td { padding: 6px 9px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+  .trn { font-family: var(--num); font-size: 17px; font-weight: 600; letter-spacing: .4px; }
+  tr.sep td { background: var(--tint); font-weight: 700; color: var(--navy); position: sticky; top: 33px; }
+  tr.pm td { background: var(--gold-soft); }
+  tr.pm td:first-child { box-shadow: inset 5px 0 0 var(--gold); }
+  .badge { display: inline-block; font-size: 12px; padding: 1px 8px; border-radius: 10px; background: var(--tint); }
+  .badge.pm { background: #fff; border: 1px solid var(--gold); color: var(--gold-ink); font-weight: 600; }
+  .has-tip { text-decoration: underline dotted var(--muted); cursor: help; }
+  .empty { padding: 18px; color: var(--muted); }
+
+  .banner { margin: 12px 0 0; padding: 10px 14px; border-radius: 8px; background: #FBE9E7; color: #8A1F11; }
+  footer { margin: 4px 0 30px; font-size: 13px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px 18px; }
+
+
+  /* ---------- 2025 comparison ---------- */
+  .cmp { margin-top: 14px; border-top: 3px solid var(--gold); padding-top: 10px; }
+  .cmp-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 4px 12px; margin-bottom: 8px; }
+  .cmp-head h2 { font-size: 25px; }
+  .kpi .vs { font-size: 13px; }
+  .kpi .up { color: #1F7A4D; font-weight: 700; }
+  .kpi .down { color: #B3261E; font-weight: 700; }
+  .kpi.lead .up { color: #8FE0B5; }
+  .kpi.lead .down { color: #FFB4A8; }
+  .kpi.unres { border-left: 6px solid #D35400; }
+  .chart-box { position: relative; height: 310px; }
+  .chart-box.day { height: 360px; }
+  .row3b .chart-box { flex: 1; height: auto; min-height: 0; }
+  .row3b { display: grid; gap: 12px; margin-top: 12px; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .row3b .panel { height: 380px; display: flex; flex-direction: column; }
+  .cmp-note { font-size: 12px; color: var(--muted); margin: 8px 0 0; }
+  .sw.u { background: #D35400; }
+  .sw.y5 { background: #94A6BD; }
+
+  @media (max-width: 1050px) {
+    .row2, .row3 { grid-template-columns: 1fr; }
+    .row3 .panel { height: auto; }
+    .row3b .panel { height: 380px; }
+    .row3b { grid-template-columns: 1fr; }
+    .term-scroll { max-height: 420px; }
+    .tbl-wrap { max-height: 70vh; }
+    .hdr-right { margin-left: 0; }
+  }
+  @media (max-width: 600px) {
+    .cd { min-height: 60px; padding: 4px; }
+    .cd-num { font-size: 20px; }
+    .cd-split { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="band">
+  <div class="wrap hdr">
+    <h1>Festival specials over Delhi Division<span class="stamp" id="stamp">Loading data…</span></h1>
+    <div class="seg" role="group" aria-label="Period">
+      <button type="button" data-period="festival" aria-pressed="true">Diwali &amp; Chhath<small>03 Nov to 15 Nov</small></button>
+      <button type="button" data-period="dussehra" aria-pressed="false">Dussehra / Durga Puja<small>17 Oct to 20 Oct</small></button>
+      <button type="button" data-period="custom" aria-pressed="false">Custom<small>Pick dates</small></button>
+    </div>
+    <div class="dates">
+      <label>From <input type="date" id="fromDate"></label>
+      <label>To <input type="date" id="toDate"></label>
+    </div>
+    <div class="hdr-right">
+      <button class="ghost" type="button" id="refresh">Refresh data</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div id="banner" class="banner" role="alert" hidden></div>
+
+  <div class="fbar">
+    <div class="fgroup" role="group" aria-label="Direction">
+      <span class="flabel">Direction</span>
+      <span id="dirChips" class="fgroup"></span>
+    </div>
+    <div class="fgroup">
+      <span class="flabel">Trains</span>
+      <span class="lseg" role="group" aria-label="Originating or passing">
+        <button type="button" data-status="Originating">Originating</button>
+        <button type="button" data-status="Passing">Passing</button>
+        <button type="button" data-status="Both">Both</button>
+      </span>
+    </div>
+    <div class="fgroup" id="activeChips"></div>
+  </div>
+
+  <p class="ctx" id="kpiCtx"></p>
+  <div class="kpis" id="kpis"></div>
+
+  <!-- Diwali & Chhath: 2026 vs 2025 (shown only for the Diwali & Chhath period) -->
+  <section class="cmp" id="cmp" hidden aria-labelledby="h-cmp">
+    <div class="cmp-head">
+      <h2 id="h-cmp">Diwali &amp; Chhath 2026 vs 2025, day by day from Diwali</h2>
+      <span class="hint" id="cmpCtx"></span>
+    </div>
+    <div class="kpis" id="ckpis"></div>
+
+    <section class="panel" aria-labelledby="h-cday" style="margin-top:12px">
+      <div class="ph">
+        <h2 id="h-cday">Trips per day</h2>
+        <span class="hint">Number on top = total trips. Orange U = Unreserved (on demand) trips. Select a day to filter the page.</span>
+      </div>
+      <div class="chart-box day"><canvas id="cmpDay" role="img" aria-label="Trips per day, 2026 against 2025"></canvas></div>
+    </section>
+
+    <div class="row3b">
+      <section class="panel" aria-labelledby="h-ccum">
+        <div class="ph"><h2 id="h-ccum">Cumulative trips</h2></div>
+        <div class="chart-box"><canvas id="cmpCum" role="img" aria-label="Cumulative trips, 2026 against 2025"></canvas></div>
+      </section>
+      <section class="panel" aria-labelledby="h-cterm">
+        <div class="ph"><h2 id="h-cterm">Terminals, 2026 vs 2025</h2><span class="hint">Select a bar</span></div>
+        <div class="term-scroll"><div class="term-canvas" id="cTermBox"><canvas id="cmpTerm" role="img" aria-label="Trips by terminal, 2026 against 2025"></canvas></div></div>
+      </section>
+    </div>
+    <p class="cmp-note">2025 figures are aligned to 2026 by days from Diwali (D-Day). They come from the 2025 master data for the same festival window: PM at DLI = "DLI Division with RBPC"; Unreserved = trains marked Unreserved; Clone runs counted as originating; Terminating runs excluded.</p>
+  </section>
+
+  <div class="row2">
+    <section class="panel" aria-labelledby="h-cal">
+      <div class="ph">
+        <h2 id="h-cal">Originating trips per day</h2>
+        <span class="legend"><span><span class="sw g"></span>PM at DLI</span><span><span class="sw n"></span>PM at other ends</span></span>
+      </div>
+      <div class="cal" id="cal"></div>
+      <p class="cal-note" id="calNote"></p>
+    </section>
+
+    <section class="panel" aria-labelledby="h-maint">
+      <div class="ph">
+        <h2 id="h-maint">Maintenance</h2>
+        <span class="hint">Select a slice to filter</span>
+      </div>
+      <div class="donut-box">
+        <div class="donut-wrap">
+          <canvas id="donut" aria-label="Maintenance split chart" role="img"></canvas>
+          <div class="donut-center"><b id="donutNum">0</b><span id="donutLbl">trains</span></div>
+        </div>
+        <div class="mlegend" id="mlegend"></div>
+      </div>
+    </section>
+  </div>
+
+  <div class="row3">
+    <section class="panel" aria-labelledby="h-term">
+      <div class="ph">
+        <h2 id="h-term">Trips by DLI Division terminal</h2>
+        <span class="hint">Select a bar</span>
+      </div>
+      <div class="term-scroll">
+        <div class="term-canvas" id="termBox"><canvas id="termChart" aria-label="Trips by terminal chart" role="img"></canvas></div>
+        <div class="empty" id="termEmpty" hidden>No trains for this selection.</div>
+      </div>
+    </section>
+
+    <section class="panel" aria-labelledby="h-list">
+      <div class="ph">
+        <div>
+          <h2 id="h-list">Trains</h2>
+          <span class="hint" id="listHint"></span>
+        </div>
+        <input type="search" class="search" id="search" placeholder="Search train, station, SCN" aria-label="Search trains">
+      </div>
+      <div class="tbl-wrap" id="list"></div>
+    </section>
+  </div>
+
+  <footer>
+    <span>Trains are distinct train numbers; trips are individual runs in the selected dates.</span>
+    <span id="skipped"></span>
+  </footer>
+</main>
+
+<script>
+/* ===================== CONFIG ===================== */
+/*
+ * DATA SOURCE: the "Notified" tab published as CSV.
+ * Google Sheet > File > Share > Publish to web > Link > select "Notified" (not Entire document)
+ * > Comma-separated values (.csv) > Publish. Paste that link below.
+ * Published data refreshes about every 5 minutes after edits in the sheet.
+ *
+ * COLUMN MAP (Notified tab, header in row 1, one row per run):
+ *   C Train No | D From Stn (terminal for ORIGINATING) | E D/P Time | F To Stn
+ *   H Date of RUN (JCO) (date for ORIGINATING; fallback for passing) | I Terminal Over DLI Div (fallback)
+ *   J Type of Maintenance | L Bound Direction | M Passing/Originating | N Total Load | O Load Details
+ *   P SCN No. | Q Passing Station (terminal for PASSING) | R Passing Time | S A/R at DLI Div On Date (date for PASSING)
+ * Dates are read as MM/DD/YYYY (as the sheet displays them), swapped only if the first part > 12.
+ */
+const CSV_URL = 'PASTE_PUBLISHED_CSV_LINK_HERE';
+const COL = {
+  TRAIN: 2, FROM: 3, DEP: 4, TO: 5, JCO: 7, TERM_I: 8, MAINT: 9,
+  DIR: 11, STATUS: 12, LOAD: 13, LOAD_DET: 14, SCN: 15,
+  PASS_STN: 16, PASS_TIME: 17, ARR_DLI_DATE: 18, TYPE: 26 // AA Train Type (Unreserved / Clone)
+};
+
+const PERIODS = {
+  festival: { from: '2026-11-03', to: '2026-11-15' },
+  dussehra: { from: '2026-10-17', to: '2026-10-20' }
+};
+const DIR_ORDER = ['East', 'West', 'North', 'South'];
+const MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const DOW = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+const CAL_MAX_DAYS = 62;
+
+/* ---------- Diwali & Chhath comparison (hard-coded) ----------
+ * 2026 D-Day (Diwali) = 08 Nov 2026; window D-5 to D+7 = 03 Nov to 15 Nov 2026.
+ * 2025 D-Day (Diwali) = 20 Oct 2025; window D-5 to D+7 = 15 Oct to 27 Oct 2025.
+ * Only 2026 dates are displayed; 2025 is shown by days from Diwali.
+ * D25 fields: [daysFromDiwali, trainNo, from, to, terminal, direction, O/P, pmAtDLI, unreserved, time, clone]
+ * Source: 2025 Master_Data_Originating_Passing. pmAtDLI = Col J "DLI Division with RBPC";
+ * unreserved = Col Z "Unreserved"; passing runs dated by A/R at DLI Div; Clone = originating; Terminating excluded.
+ */
+const FEST = { d26: '2026-11-08', from: -5, to: 7 };
+const D25 = [[0,"08761","NZM","DURG","NZM","West","O",0,0,"12:30",0],[7,"08761","NZM","DURG","NZM","West","O",0,0,"12:30",0],[-2,"06597","YPR","YNRK","NZM","South","P",0,0,"02:45",0],[5,"06597","YPR","YNRK","NZM","South","P",0,0,"02:45",0],[-2,"06598","YNRK","YPR","NZM","South","P",0,0,"23:35",0],[5,"06598","YNRK","YPR","NZM","South","P",0,0,"23:35",0],[0,"04204","NDLS","LKO","NDLS","East","O",0,0,"20:20",0],[7,"04204","NDLS","LKO","NDLS","East","O",0,0,"20:20",0],[-2,"04008","ANVT","JBN","ANVT","East","O",1,0,"08:30",0],[5,"04008","ANVT","JBN","ANVT","East","O",1,0,"08:30",0],[-4,"04010","DLI","SMI","DLI","East","O",1,0,"23:05",0],[3,"04010","DLI","SMI","DLI","East","O",1,0,"23:05",0],[-3,"04022","NDLS","GKP","NDLS","East","O",1,0,"14:00",0],[4,"04022","NDLS","GKP","NDLS","East","O",1,0,"14:00",0],[-4,"04060","ANVT","JYG","ANVT","East","O",1,0,"09:00",0],[3,"04060","ANVT","JYG","ANVT","East","O",1,0,"09:00",0],[-3,"04070","ANVT","RGD","ANVT","East","O",1,0,"00:20",0],[4,"04070","ANVT","RGD","ANVT","East","O",1,0,"00:20",0],[1,"04064","DLI","BGP","DLI","East","O",1,0,"11:00",0],[-5,"04450","NDLS","DBG","NDLS","East","O",1,0,"15:10",0],[-4,"04450","NDLS","DBG","NDLS","East","O",1,0,"15:10",0],[-3,"04450","NDLS","DBG","NDLS","East","O",1,0,"15:10",0],[-2,"04450","NDLS","DBG","NDLS","East","O",1,0,"15:10",0],[-1,"04450","NDLS","DBG","NDLS","East","O",1,0,"15:10",0],[0,"04450","NDLS","DBG","NDLS","East","O",1,0,"15:10",0],[1,"04450","NDLS","DBG","NDLS","East","O",1,0,"15:10",0],[2,"04450","NDLS","DBG","NDLS","East","O",1,0,"15:10",0],[3,"04450","NDLS","DBG","NDLS","East","O",1,0,"15:10",0],[4,"04450","NDLS","DBG","NDLS","East","O",1,0,"15:10",0],[5,"04450","NDLS","DBG","NDLS","East","O",1,0,"15:10",0],[6,"04450","NDLS","DBG","NDLS","East","O",1,0,"15:10",0],[7,"04450","NDLS","DBG","NDLS","East","O",1,0,"15:10",0],[-5,"04454","NDLS","MNE","NDLS","East","O",1,0,"20:00",0],[-4,"04454","NDLS","MNE","NDLS","East","O",1,0,"20:00",0],[-3,"04454","NDLS","MNE","NDLS","East","O",1,0,"20:00",0],[-2,"04454","NDLS","MNE","NDLS","East","O",1,0,"20:00",0],[-1,"04454","NDLS","MNE","NDLS","East","O",1,0,"20:00",0],[0,"04454","NDLS","MNE","NDLS","East","O",1,0,"20:00",0],[1,"04454","NDLS","MNE","NDLS","East","O",1,0,"20:00",0],[2,"04454","NDLS","MNE","NDLS","East","O",1,0,"20:00",0],[3,"04454","NDLS","MNE","NDLS","East","O",1,0,"20:00",0],[4,"04454","NDLS","MNE","NDLS","East","O",1,0,"20:00",0],[5,"04454","NDLS","MNE","NDLS","East","O",1,0,"20:00",0],[6,"04454","NDLS","MNE","NDLS","East","O",1,0,"20:00",0],[7,"04454","NDLS","MNE","NDLS","East","O",1,0,"20:00",0],[-5,"04456","NDLS","DHN","NDLS","East","O",1,0,"22:40",0],[-4,"04456","NDLS","DHN","NDLS","East","O",1,0,"22:40",0],[-3,"04456","NDLS","DHN","NDLS","East","O",1,0,"22:40",0],[-2,"04456","NDLS","DHN","NDLS","East","O",1,0,"22:40",0],[-1,"04456","NDLS","DHN","NDLS","East","O",1,0,"22:40",0],[0,"04456","NDLS","DHN","NDLS","East","O",1,0,"22:40",0],[1,"04456","NDLS","DHN","NDLS","East","O",1,0,"22:40",0],[2,"04456","NDLS","DHN","NDLS","East","O",1,0,"22:40",0],[3,"04456","NDLS","DHN","NDLS","East","O",1,0,"22:40",0],[4,"04456","NDLS","DHN","NDLS","East","O",1,0,"22:40",0],[5,"04456","NDLS","DHN","NDLS","East","O",1,0,"22:40",0],[6,"04456","NDLS","DHN","NDLS","East","O",1,0,"22:40",0],[7,"04456","NDLS","DHN","NDLS","East","O",1,0,"22:40",0],[-5,"04458","ANVT","BGP","ANVT","East","O",1,0,"13:40",0],[-4,"04458","ANVT","BGP","ANVT","East","O",1,0,"13:40",0],[-3,"04458","ANVT","BGP","ANVT","East","O",1,0,"13:40",0],[-2,"04458","ANVT","BGP","ANVT","East","O",1,0,"13:40",0],[-1,"04458","ANVT","BGP","ANVT","East","O",1,0,"13:40",0],[0,"04458","ANVT","BGP","ANVT","East","O",1,0,"13:40",0],[1,"04458","ANVT","BGP","ANVT","East","O",1,0,"13:40",0],[2,"04458","ANVT","BGP","ANVT","East","O",1,0,"13:40",0],[3,"04458","ANVT","BGP","ANVT","East","O",1,0,"13:40",0],[4,"04458","ANVT","BGP","ANVT","East","O",1,0,"13:40",0],[5,"04458","ANVT","BGP","ANVT","East","O",1,0,"13:40",0],[6,"04458","ANVT","BGP","ANVT","East","O",1,0,"13:40",0],[7,"04458","ANVT","BGP","ANVT","East","O",1,0,"13:40",0],[-5,"04016","ANVT","SMI","ANVT","East","O",1,0,"15:30",0],[-4,"04016","ANVT","SMI","ANVT","East","O",1,0,"15:30",0],[-3,"04016","ANVT","SMI","ANVT","East","O",1,0,"15:30",0],[-2,"04016","ANVT","SMI","ANVT","East","O",1,0,"15:30",0],[-1,"04016","ANVT","SMI","ANVT","East","O",1,0,"15:30",0],[0,"04016","ANVT","SMI","ANVT","East","O",1,0,"15:30",0],[1,"04016","ANVT","SMI","ANVT","East","O",1,0,"15:30",0],[2,"04016","ANVT","SMI","ANVT","East","O",1,0,"15:30",0],[3,"04016","ANVT","SMI","ANVT","East","O",1,0,"15:30",0],[4,"04016","ANVT","SMI","ANVT","East","O",1,0,"15:30",0],[5,"04016","ANVT","SMI","ANVT","East","O",1,0,"15:30",0],[6,"04016","ANVT","SMI","ANVT","East","O",1,0,"15:30",0],[7,"04016","ANVT","SMI","ANVT","East","O",1,0,"15:30",0],[-5,"04090","ANVT","PNBE","ANVT","East","O",1,0,"14:25",0],[-4,"04090","ANVT","PNBE","ANVT","East","O",1,0,"14:25",0],[-3,"04090","ANVT","PNBE","ANVT","East","O",1,0,"14:25",0],[-2,"04090","ANVT","PNBE","ANVT","East","O",1,0,"14:25",0],[-1,"04090","ANVT","PNBE","ANVT","East","O",1,0,"14:25",0],[0,"04090","ANVT","PNBE","ANVT","East","O",1,0,"14:25",0],[1,"04090","ANVT","PNBE","ANVT","East","O",1,0,"14:25",0],[2,"04090","ANVT","PNBE","ANVT","East","O",1,0,"14:25",0],[3,"04090","ANVT","PNBE","ANVT","East","O",1,0,"14:25",0],[4,"04090","ANVT","PNBE","ANVT","East","O",1,0,"14:25",0],[5,"04090","ANVT","PNBE","ANVT","East","O",1,0,"14:25",0],[6,"04090","ANVT","PNBE","ANVT","East","O",1,0,"14:25",0],[7,"04090","ANVT","PNBE","ANVT","East","O",1,0,"14:25",0],[-5,"04452","NDLS","HWH","NDLS","East","O",1,0,"18:15",0],[-4,"04452","NDLS","HWH","NDLS","East","O",1,0,"18:15",0],[-3,"04452","NDLS","HWH","NDLS","East","O",1,0,"18:15",0],[-2,"04452","NDLS","HWH","NDLS","East","O",1,0,"18:15",0],[-1,"04452","NDLS","HWH","NDLS","East","O",1,0,"18:15",0],[0,"04452","NDLS","HWH","NDLS","East","O",1,0,"18:15",0],[1,"04452","NDLS","HWH","NDLS","East","O",1,0,"18:15",0],[2,"04452","NDLS","HWH","NDLS","East","O",1,0,"18:15",0],[3,"04452","NDLS","HWH","NDLS","East","O",1,0,"18:15",0],[4,"04452","NDLS","HWH","NDLS","East","O",1,0,"18:15",0],[5,"04452","NDLS","HWH","NDLS","East","O",1,0,"18:15",0],[6,"04452","NDLS","HWH","NDLS","East","O",1,0,"18:15",0],[7,"04452","NDLS","HWH","NDLS","East","O",1,0,"18:15",0],[-1,"02878","ANVT","RNC","ANVT","East","O",0,0,"04:00",0],[6,"02878","ANVT","RNC","ANVT","East","O",0,0,"04:00",0],[1,"07024","NZM","CHZ","NZM","South","O",0,0,"04:00",0],[-5,"04094","NZM","PNBE","NZM","East","O",1,0,"11:00",0],[-4,"04094","NZM","PNBE","NZM","East","O",1,0,"11:00",0],[-3,"04094","NZM","PNBE","NZM","East","O",1,0,"11:00",0],[-2,"04094","NZM","PNBE","NZM","East","O",1,0,"11:00",0],[-1,"04094","NZM","PNBE","NZM","East","O",1,0,"11:00",0],[0,"04094","NZM","PNBE","NZM","East","O",1,0,"11:00",0],[1,"04094","NZM","PNBE","NZM","East","O",1,0,"11:00",0],[2,"04094","NZM","PNBE","NZM","East","O",1,0,"11:00",0],[3,"04094","NZM","PNBE","NZM","East","O",1,0,"11:00",0],[4,"04094","NZM","PNBE","NZM","East","O",1,0,"11:00",0],[5,"04094","NZM","PNBE","NZM","East","O",1,0,"11:00",0],[6,"04094","NZM","PNBE","NZM","East","O",1,0,"11:00",0],[7,"04094","NZM","PNBE","NZM","East","O",1,0,"11:00",0],[-5,"04096","ANVT","PPTA","ANVT","East","O",1,0,"00:05",0],[-4,"04096","ANVT","PPTA","ANVT","East","O",1,0,"00:05",0],[-3,"04096","ANVT","PPTA","ANVT","East","O",1,0,"00:05",0],[-2,"04096","ANVT","PPTA","ANVT","East","O",1,0,"00:05",0],[-1,"04096","ANVT","PPTA","ANVT","East","O",1,0,"00:05",0],[0,"04096","ANVT","PPTA","ANVT","East","O",1,0,"00:05",0],[1,"04096","ANVT","PPTA","ANVT","East","O",1,0,"00:05",0],[2,"04096","ANVT","PPTA","ANVT","East","O",1,0,"00:05",0],[3,"04096","ANVT","PPTA","ANVT","East","O",1,0,"00:05",0],[4,"04096","ANVT","PPTA","ANVT","East","O",1,0,"00:05",0],[5,"04096","ANVT","PPTA","ANVT","East","O",1,0,"00:05",0],[6,"04096","ANVT","PPTA","ANVT","East","O",1,0,"00:05",0],[7,"04096","ANVT","PPTA","ANVT","East","O",1,0,"00:05",0],[-5,"04098","NDLS","HPO","NDLS","East","O",1,0,"09:30",0],[-4,"04098","NDLS","HPO","NDLS","East","O",1,0,"09:30",0],[-3,"04098","NDLS","HPO","NDLS","East","O",1,0,"09:30",0],[-2,"04098","NDLS","HPO","NDLS","East","O",1,0,"09:30",0],[-1,"04098","NDLS","HPO","NDLS","East","O",1,0,"09:30",0],[0,"04098","NDLS","HPO","NDLS","East","O",1,0,"09:30",0],[1,"04098","NDLS","HPO","NDLS","East","O",1,0,"09:30",0],[2,"04098","NDLS","HPO","NDLS","East","O",1,0,"09:30",0],[3,"04098","NDLS","HPO","NDLS","East","O",1,0,"09:30",0],[4,"04098","NDLS","HPO","NDLS","East","O",1,0,"09:30",0],[5,"04098","NDLS","HPO","NDLS","East","O",1,0,"09:30",0],[6,"04098","NDLS","HPO","NDLS","East","O",1,0,"09:30",0],[7,"04098","NDLS","HPO","NDLS","East","O",1,0,"09:30",0],[-5,"07077","CHZ","DDN","NZM","South","P",0,0,"10:40",0],[2,"07077","CHZ","DDN","NZM","South","P",0,0,"10:40",0],[-4,"07078","DDN","CHZ","NZM","South","P",0,0,"13:35",0],[3,"07078","DDN","CHZ","NZM","South","P",0,0,"13:35",0],[-5,"05023","GTNR","KWP","DLI","West","P",0,0,"12:10",0],[2,"05023","GTNR","KWP","DLI","West","P",0,0,"12:10",0],[-4,"05024","KWP","GTNR","DLI","West","P",0,0,"00:25",0],[3,"05024","KWP","GTNR","DLI","West","P",0,0,"00:25",0],[-2,"01492","NZM","PUNE","NZM","West","O",0,0,"21:25",0],[5,"01492","NZM","PUNE","NZM","West","O",0,0,"21:25",0],[-5,"01484","NZM","PUNE","NZM","West","O",0,0,"21:25",0],[2,"01484","NZM","PUNE","NZM","West","O",0,0,"21:25",0],[-1,"01484","NZM","PUNE","NZM","West","O",0,0,"21:25",0],[6,"01484","NZM","PUNE","NZM","West","O",0,0,"21:25",0],[-5,"03698","DLI","GAYA","DLI","East","O",0,0,"08:55",0],[-4,"03698","DLI","GAYA","DLI","East","O",0,0,"08:55",0],[-2,"03698","DLI","GAYA","DLI","East","O",0,0,"08:55",0],[-1,"03698","DLI","GAYA","DLI","East","O",0,0,"08:55",0],[1,"03698","DLI","GAYA","DLI","East","O",0,0,"08:55",0],[2,"03698","DLI","GAYA","DLI","East","O",0,0,"08:55",0],[3,"03698","DLI","GAYA","DLI","East","O",0,0,"08:55",0],[5,"03698","DLI","GAYA","DLI","East","O",0,0,"08:55",0],[6,"03698","DLI","GAYA","DLI","East","O",0,0,"08:55",0],[0,"03258","ANVT","DNR","ANVT","East","O",0,0,"05:00",0],[7,"03258","ANVT","DNR","ANVT","East","O",0,0,"05:00",0],[-1,"05220","ANVT","MFP","ANVT","East","O",0,0,"12:00",0],[6,"05220","ANVT","MFP","ANVT","East","O",0,0,"12:00",0],[1,"05576","ANVT","SHC","ANVT","East","O",0,0,"05:15",0],[-5,"05580","ANVT","PRNC","ANVT","East","O",0,0,"05:15",0],[-4,"05580","ANVT","PRNC","ANVT","East","O",0,0,"05:15",0],[-3,"05580","ANVT","PRNC","ANVT","East","O",0,0,"05:15",0],[-1,"05580","ANVT","PRNC","ANVT","East","O",0,0,"05:15",0],[2,"05580","ANVT","PRNC","ANVT","East","O",0,0,"05:15",0],[3,"05580","ANVT","PRNC","ANVT","East","O",0,0,"05:15",0],[4,"05580","ANVT","PRNC","ANVT","East","O",0,0,"05:15",0],[6,"05580","ANVT","PRNC","ANVT","East","O",0,0,"05:15",0],[-1,"02392","ANVT","PNBE","ANVT","East","O",0,0,"23:20",0],[6,"02392","ANVT","PNBE","ANVT","East","O",0,0,"23:20",0],[1,"03436","ANVT","MLDT","ANVT","East","O",0,0,"15:45",0],[-5,"03311","DHN","CDG","DLI","East","P",0,0,"23:30",0],[2,"03311","DHN","CDG","DLI","East","P",0,0,"23:30",0],[-2,"03311","DHN","CDG","DLI","East","P",0,0,"23:30",0],[5,"03311","DHN","CDG","DLI","East","P",0,0,"23:30",0],[-4,"03312","CDG","DHN","DLI","East","P",0,0,"10:15",0],[3,"03312","CDG","DHN","DLI","East","P",0,0,"10:15",0],[-1,"03312","CDG","DHN","DLI","East","P",0,0,"10:15",0],[6,"03312","CDG","DHN","DLI","East","P",0,0,"10:15",0],[-3,"05734","KNE","ASR","MTC","East","P",0,0,"14:10",0],[4,"05734","KNE","ASR","MTC","East","P",0,0,"14:10",0],[-2,"05733","ASR","KNE","MTC","East","P",0,0,"12:30",0],[5,"05733","ASR","KNE","MTC","East","P",0,0,"12:30",0],[-5,"09524","SSB","OKHA","SSB","West","O",0,0,"13:15",0],[2,"09524","SSB","OKHA","SSB","West","O",0,0,"13:15",0],[1,"01708","ANVT","JBP","ANVT","East","O",0,0,"13:45",0],[-4,"05301","MAU","UMB","DLI","East","P",0,0,"20:20",0],[3,"05301","MAU","UMB","DLI","East","P",0,0,"20:20",0],[-3,"05302","UMB","MAU","DLI","East","P",0,0,"05:00",0],[4,"05302","UMB","MAU","DLI","East","P",0,0,"05:00",0],[-3,"04829","JU","GKP","DLI","East","P",0,0,"04:30",0],[4,"04829","JU","GKP","DLI","East","P",0,0,"04:30",0],[-2,"04830","GKP","JU","DLI","East","P",0,0,"",0],[5,"04830","GKP","JU","DLI","East","P",0,0,"14:00",0],[-2,"09258","SSB","BVC","SSB","West","O",0,0,"13:15",0],[5,"09258","SSB","BVC","SSB","West","O",0,0,"13:15",0],[-2,"05306","ANVT","CPR","ANVT","East","O",0,0,"00:20",0],[-5,"05306","ANVT","CPR","ANVT","East","O",0,0,"00:20",0],[-5,"02564","NDLS","BJU","NDLS","East","O",0,0,"17:55",1],[-4,"02564","NDLS","BJU","NDLS","East","O",0,0,"17:55",1],[-3,"02564","NDLS","BJU","NDLS","East","O",0,0,"17:55",1],[-2,"02564","NDLS","BJU","NDLS","East","O",0,0,"17:55",1],[-1,"02564","NDLS","BJU","NDLS","East","O",0,0,"17:55",1],[0,"02564","NDLS","BJU","NDLS","East","O",0,0,"17:55",1],[1,"02564","NDLS","BJU","NDLS","East","O",0,0,"17:55",1],[2,"02564","NDLS","BJU","NDLS","East","O",0,0,"17:55",1],[3,"02564","NDLS","BJU","NDLS","East","O",0,0,"17:55",1],[4,"02564","NDLS","BJU","NDLS","East","O",0,0,"17:55",1],[5,"02564","NDLS","BJU","NDLS","East","O",0,0,"17:55",1],[6,"02564","NDLS","BJU","NDLS","East","O",0,0,"17:55",1],[7,"02564","NDLS","BJU","NDLS","East","O",0,0,"17:55",1],[-5,"02570","NDLS","DBG","NDLS","East","O",0,0,"12:15",1],[-4,"02570","NDLS","DBG","NDLS","East","O",0,0,"12:15",1],[-3,"02570","NDLS","DBG","NDLS","East","O",0,0,"12:15",1],[-2,"02570","NDLS","DBG","NDLS","East","O",0,0,"12:15",1],[-1,"02570","NDLS","DBG","NDLS","East","O",0,0,"12:15",1],[0,"02570","NDLS","DBG","NDLS","East","O",0,0,"12:15",1],[1,"02570","NDLS","DBG","NDLS","East","O",0,0,"12:15",1],[2,"02570","NDLS","DBG","NDLS","East","O",0,0,"12:15",1],[3,"02570","NDLS","DBG","NDLS","East","O",0,0,"12:15",1],[4,"02570","NDLS","DBG","NDLS","East","O",0,0,"12:15",1],[5,"02570","NDLS","DBG","NDLS","East","O",0,0,"12:15",1],[6,"02570","NDLS","DBG","NDLS","East","O",0,0,"12:15",1],[7,"02570","NDLS","DBG","NDLS","East","O",0,0,"12:15",1],[-5,"04056","ANVT","BUI","ANVT","East","O",1,0,"18:05",1],[2,"04056","ANVT","BUI","ANVT","East","O",1,0,"18:05",1],[-5,"09640","ROK","MDJN","ROK","West","O",0,0,"13:20",0],[-4,"09640","ROK","MDJN","ROK","West","O",0,0,"13:20",0],[-3,"09640","ROK","MDJN","ROK","West","O",0,0,"13:20",0],[-2,"09640","ROK","MDJN","ROK","West","O",0,0,"13:20",0],[-1,"09640","ROK","MDJN","ROK","West","O",0,0,"13:20",0],[0,"09640","ROK","MDJN","ROK","West","O",0,0,"13:20",0],[1,"09640","ROK","MDJN","ROK","West","O",0,0,"13:20",0],[2,"09640","ROK","MDJN","ROK","West","O",0,0,"13:20",0],[3,"09640","ROK","MDJN","ROK","West","O",0,0,"13:20",0],[4,"09640","ROK","MDJN","ROK","West","O",0,0,"13:20",0],[5,"09640","ROK","MDJN","ROK","West","O",0,0,"13:20",0],[6,"09640","ROK","MDJN","ROK","West","O",0,0,"13:20",0],[7,"09640","ROK","MDJN","ROK","West","O",0,0,"13:20",0],[-1,"02418","DLI","PRYJ","DLI","East","O",0,0,"09:30",0],[6,"02418","DLI","PRYJ","DLI","East","O",0,0,"09:30",0],[-2,"02418","DLI","PRYJ","DLI","East","O",0,0,"09:30",0],[5,"02418","DLI","PRYJ","DLI","East","O",0,0,"09:30",0],[-3,"02276","DLI","SFG","DLI","East","O",0,0,"09:30",0],[4,"02276","DLI","SFG","DLI","East","O",0,0,"09:30",0],[0,"03256","ANVT","PNBE","ANVT","East","O",0,0,"23:30",0],[7,"03256","ANVT","PNBE","ANVT","East","O",0,0,"23:30",0],[-3,"03256","ANVT","PNBE","ANVT","East","O",0,0,"23:30",0],[4,"03256","ANVT","PNBE","ANVT","East","O",0,0,"23:30",0],[-1,"04652","ASR","JYG","DLI","East","P",0,0,"17:40",0],[6,"04652","ASR","JYG","DLI","East","P",0,0,"17:40",0],[-5,"04652","ASR","JYG","DLI","East","P",0,0,"17:40",0],[2,"04652","ASR","JYG","DLI","East","P",0,0,"17:40",0],[-3,"04652","ASR","JYG","DLI","East","P",0,0,"17:40",0],[4,"04652","ASR","JYG","DLI","East","P",0,0,"17:40",0],[0,"04651","JYG","ASR","DLI","East","P",0,0,"07:00",0],[7,"04651","JYG","ASR","DLI","East","P",0,0,"07:00",0],[-2,"04651","JYG","ASR","DLI","East","P",0,0,"07:00",0],[5,"04651","JYG","ASR","DLI","East","P",0,0,"07:00",0],[-5,"04651","JYG","ASR","DLI","East","P",0,0,"07:00",0],[2,"04651","JYG","ASR","DLI","East","P",0,0,"07:00",0],[-1,"05626","ROK","KYQ","ROK","East","O",0,0,"22:10",0],[6,"05626","ROK","KYQ","ROK","East","O",0,0,"22:10",0],[1,"01494","NZM","PUNE","NZM","West","O",0,0,"21:25",0],[-3,"01494","NZM","PUNE","NZM","West","O",0,0,"21:25",0],[4,"01494","NZM","PUNE","NZM","West","O",0,0,"21:25",0],[0,"02398","ANVT","GAYA","ANVT","East","O",0,0,"08:20",0],[7,"02398","ANVT","GAYA","ANVT","East","O",0,0,"08:20",0],[-1,"05284","ANVT","MFP","ANVT","East","O",0,0,"07:00",0],[6,"05284","ANVT","MFP","ANVT","East","O",0,0,"07:00",0],[-4,"05284","ANVT","MFP","ANVT","East","O",0,0,"07:00",0],[3,"05284","ANVT","MFP","ANVT","East","O",0,0,"07:00",0],[-1,"03310","DLI","DHN","DLI","East","O",0,0,"11:45",0],[6,"03310","DLI","DHN","DLI","East","O",0,0,"11:45",0],[-5,"03310","DLI","DHN","DLI","East","O",0,0,"11:45",0],[2,"03310","DLI","DHN","DLI","East","O",0,0,"11:45",0],[0,"03640","DLI","GAYA","DLI","East","O",0,0,"19:00",0],[7,"03640","DLI","GAYA","DLI","East","O",0,0,"19:00",0],[-5,"03640","DLI","GAYA","DLI","East","O",0,0,"19:00",0],[2,"03640","DLI","GAYA","DLI","East","O",0,0,"19:00",0],[-3,"03640","DLI","GAYA","DLI","East","O",0,0,"19:00",0],[4,"03640","DLI","GAYA","DLI","East","O",0,0,"19:00",0],[1,"03222","ANVT","RGD","ANVT","East","O",0,0,"16:00",0],[-3,"07096","NZM","CHZ","NZM","South","O",0,0,"19:00",0],[-2,"09310","NZM","INDB","NZM","West","O",0,0,"08:20",0],[5,"09310","NZM","INDB","NZM","West","O",0,0,"08:20",0],[0,"09310","NZM","INDB","NZM","West","O",0,0,"08:20",0],[7,"09310","NZM","INDB","NZM","West","O",0,0,"08:20",0],[0,"09097","BDTS","LDH","NDLS","West","P",0,0,"18:50",0],[7,"09097","BDTS","LDH","NDLS","West","P",0,0,"18:50",0],[1,"09098","LDH","BDTS","NDLS","West","P",0,0,"10:30",0],[-2,"02252","NDLS","PNBE","NDLS","East","O",1,0,"08:35",0],[5,"02252","NDLS","PNBE","NDLS","East","O",1,0,"08:35",0],[0,"02252","NDLS","PNBE","NDLS","East","O",1,0,"08:35",0],[7,"02252","NDLS","PNBE","NDLS","East","O",1,0,"08:35",0],[-5,"02252","NDLS","PNBE","NDLS","East","O",1,0,"08:35",0],[2,"02252","NDLS","PNBE","NDLS","East","O",1,0,"08:35",0],[-1,"02254","NDLS","PNBE","NDLS","East","O",0,0,"08:35",0],[6,"02254","NDLS","PNBE","NDLS","East","O",0,0,"08:35",0],[1,"02254","NDLS","PNBE","NDLS","East","O",0,0,"08:35",0],[-4,"02254","NDLS","PNBE","NDLS","East","O",0,0,"08:35",0],[3,"02254","NDLS","PNBE","NDLS","East","O",0,0,"08:35",0],[-4,"01428","NZM","KK","NZM","South","O",0,0,"21:25",0],[3,"01428","NZM","KK","NZM","South","O",0,0,"21:25",0],[0,"01428","NZM","KK","NZM","South","O",0,0,"21:25",0],[7,"01428","NZM","KK","NZM","South","O",0,0,"21:25",0],[-5,"04413","DLI","SMQL","DLI","Intra Div","O",1,0,"16:25",0],[-4,"04413","DLI","SMQL","DLI","Intra Div","O",1,0,"16:25",0],[-3,"04413","DLI","SMQL","DLI","Intra Div","O",1,0,"16:25",0],[-2,"04413","DLI","SMQL","DLI","Intra Div","O",1,0,"16:25",0],[-1,"04413","DLI","SMQL","DLI","Intra Div","O",1,0,"16:25",0],[0,"04413","DLI","SMQL","DLI","Intra Div","O",1,0,"16:25",0],[1,"04413","DLI","SMQL","DLI","Intra Div","O",1,0,"16:25",0],[2,"04413","DLI","SMQL","DLI","Intra Div","O",1,0,"16:25",0],[3,"04413","DLI","SMQL","DLI","Intra Div","O",1,0,"16:25",0],[4,"04413","DLI","SMQL","DLI","Intra Div","O",1,0,"16:25",0],[5,"04413","DLI","SMQL","DLI","Intra Div","O",1,0,"16:25",0],[6,"04413","DLI","SMQL","DLI","Intra Div","O",1,0,"16:25",0],[7,"04413","DLI","SMQL","DLI","Intra Div","O",1,0,"16:25",0],[-4,"09004","SSB","MMCT","SSB","West","O",0,0,"10:15",0],[-3,"09004","SSB","MMCT","SSB","West","O",0,0,"10:15",0],[-2,"09004","SSB","MMCT","SSB","West","O",0,0,"10:15",0],[-1,"09004","SSB","MMCT","SSB","West","O",0,0,"10:15",0],[0,"09004","SSB","MMCT","SSB","West","O",0,0,"10:15",0],[1,"09004","SSB","MMCT","SSB","West","O",0,0,"10:15",0],[2,"09004","SSB","MMCT","SSB","West","O",0,0,"10:15",0],[3,"09004","SSB","MMCT","SSB","West","O",0,0,"10:15",0],[4,"09004","SSB","MMCT","SSB","West","O",0,0,"10:15",0],[5,"09004","SSB","MMCT","SSB","West","O",0,0,"10:15",0],[6,"09004","SSB","MMCT","SSB","West","O",0,0,"10:15",0],[7,"09004","SSB","MMCT","SSB","West","O",0,0,"10:15",0],[-5,"09425","SBIB","HW","DLI","West","P",0,0,"23:15",0],[-2,"09425","SBIB","HW","DLI","West","P",0,0,"23:15",0],[2,"09425","SBIB","HW","DLI","West","P",0,0,"23:15",0],[5,"09425","SBIB","HW","DLI","West","P",0,0,"23:15",0],[-3,"09426","HW","SBIB","DLI","West","P",0,0,"03:30",0],[0,"09426","HW","SBIB","DLI","West","P",0,0,"03:30",0],[4,"09426","HW","SBIB","DLI","West","P",0,0,"03:30",0],[7,"09426","HW","SBIB","DLI","West","P",0,0,"03:30",0],[-4,"04124","NZM","PRYJ","NZM","East","O",0,0,"15:45",0],[3,"04124","NZM","PRYJ","NZM","East","O",0,0,"15:45",0],[0,"04124","NZM","PRYJ","NZM","East","O",0,0,"15:45",0],[7,"04124","NZM","PRYJ","NZM","East","O",0,0,"15:45",0],[-3,"04402","SSB","LKO","SSB","East","O",1,0,"21:15",0],[-2,"04402","SSB","LKO","SSB","East","O",1,0,"21:15",0],[-1,"04402","SSB","LKO","SSB","East","O",1,0,"21:15",0],[-3,"04404","SSB","PNBE","SSB","East","O",1,0,"15:15",0],[-2,"04404","SSB","PNBE","SSB","East","O",1,0,"15:15",0],[-1,"04404","SSB","PNBE","SSB","East","O",1,0,"15:15",0],[2,"04404","SSB","PNBE","SSB","East","O",1,0,"15:15",0],[3,"04404","SSB","PNBE","SSB","East","O",1,0,"15:15",0],[4,"04404","SSB","PNBE","SSB","East","O",1,0,"15:15",0],[5,"04404","SSB","PNBE","SSB","East","O",1,0,"15:15",0],[6,"04404","SSB","PNBE","SSB","East","O",1,0,"15:15",0],[-3,"04406","SSB","SHC","SSB","East","O",1,0,"20:15",0],[-2,"04406","SSB","SHC","SSB","East","O",1,0,"20:15",0],[-1,"04406","SSB","SHC","SSB","East","O",1,0,"20:15",0],[2,"04406","SSB","SHC","SSB","East","O",1,0,"20:15",0],[3,"04406","SSB","SHC","SSB","East","O",1,0,"20:15",0],[4,"04406","SSB","SHC","SSB","East","O",1,0,"20:15",0],[5,"04406","SSB","SHC","SSB","East","O",1,0,"20:15",0],[6,"04406","SSB","SHC","SSB","East","O",1,0,"20:15",0],[-2,"04408","ANVT","PURI","ANVT","East","O",1,0,"23:00",0],[2,"04410","SSB","JJP","SSB","East","O",1,0,"13:00",0],[3,"04410","SSB","JJP","SSB","East","O",1,0,"13:00",0],[4,"04410","SSB","JJP","SSB","East","O",1,0,"13:00",0],[5,"04410","SSB","JJP","SSB","East","O",1,0,"13:00",0],[6,"04410","SSB","JJP","SSB","East","O",1,0,"13:00",0],[0,"04731","SGNR","SPJ","DLI","East","P",0,0,"00:25",0],[7,"04731","SGNR","SPJ","DLI","East","P",0,0,"00:25",0],[1,"04732","SPJ","SGNR","DLI","East","P",0,0,"23:40",0],[4,"04729","SGNR","GKP","DLI","East","P",0,0,"00:25",0],[5,"04730","GKP","SGNR","DLI","East","P",0,0,"12:30",0],[-3,"01662","NZM","RKMP","NZM","West","O",0,0,"21:25",0],[-2,"01662","NZM","RKMP","NZM","West","O",0,0,"21:25",0],[-2,"04058","NDLS","MFP","NDLS","East","O",1,0,"13:30",0],[-1,"04058","NDLS","MFP","NDLS","East","O",1,0,"13:30",0],[2,"04058","NDLS","MFP","NDLS","East","O",1,0,"13:30",0],[3,"04058","NDLS","MFP","NDLS","East","O",1,0,"13:30",0],[-3,"04412","NZM","VGLJ","NZM","West","O",1,0,"19:30",0],[-2,"04412","NZM","VGLJ","NZM","West","O",1,0,"19:30",0],[-1,"04412","NZM","VGLJ","NZM","West","O",1,0,"19:30",0],[-1,"09602","DEE","UDZ","DEE","West","O",0,0,"05:00",0],[7,"09602","DEE","UDZ","DEE","West","O",0,0,"05:00",0],[1,"02310","ANVT","RJPB","ANVT","East","O",0,0,"19:30",0],[3,"02310","ANVT","RJPB","ANVT","East","O",0,0,"19:30",0],[5,"02310","ANVT","RJPB","ANVT","East","O",0,0,"19:30",0],[-2,"04418","NDLS","DBG","NDLS","East","O",1,1,"13:20",0],[-2,"04420","NDLS","RJPB","NDLS","East","O",1,1,"18:00",0],[-1,"04422","NDLS","GAYA","NDLS","East","O",1,1,"12:30",0],[-1,"04424","NDLS","DBG","NDLS","East","O",1,1,"12:10",0],[-1,"04426","NDLS","DBG","NDLS","East","O",1,1,"13:20",0],[-1,"04428","ANVT","BGP","ANVT","East","O",1,1,"17:00",0],[-1,"04430","NDLS","RJPB","NDLS","East","O",1,1,"18:00",0],[0,"04432","NDLS","RJPB","NDLS","East","O",1,1,"18:00",0],[1,"04434","NDLS","DBG","NDLS","East","O",1,1,"13:15",0],[1,"04436","ANVT","BGP","ANVT","East","O",1,1,"17:00",0],[1,"04438","NDLS","RJPB","NDLS","East","O",1,1,"16:20",0],[3,"04234","SSB","LKO","SSB","East","O",0,0,"09:45",0],[5,"04234","SSB","LKO","SSB","East","O",0,0,"09:45",0],[7,"04234","SSB","LKO","SSB","East","O",0,0,"09:45",0],[4,"04236","SSB","LKO","SSB","East","O",0,0,"09:45",0],[6,"04236","SSB","LKO","SSB","East","O",0,0,"09:45",0],[1,"04440","NDLS","LLP","NDLS","East","O",0,1,"21:15",0],[2,"04434","NDLS","DBG","NDLS","East","O",0,1,"13:20",0],[3,"04434","NDLS","DBG","NDLS","East","O",0,1,"13:20",0],[5,"01662","NZM","RKMP","NZM","West","O",0,0,"21:30",0],[4,"04434","NDLS","DBG","NDLS","East","O",0,1,"13:20",0],[4,"04438","NDLS","RJPB","NDLS","East","O",1,1,"16:20",0],[7,"04146","NDLS","SFG","NDLS","East","O",0,0,"14:00",0],[5,"04434","NDLS","DBG","NDLS","East","O",1,1,"13:20",0],[6,"04416","DEE","DBG","DEE","East","O",1,0,"11:00",0],[6,"04148","NDLS","PRYJ","NDLS","East","O",0,0,"09:45",0],[5,"04442","NDLS","SHC","NDLS","East","O",1,1,"21:10",0],[5,"04438","NDLS","RJPB","NDLS","East","O",1,1,"18:00",0],[7,"04150","ANVT","PRYJ","ANVT","East","O",0,0,"09:45",0],[7,"04186","NZM","VGLJ","NZM","West","O",0,0,"00:30",0],[7,"04188","NZM","VGLJ","NZM","West","O",0,0,"04:00",0]].map(a => ({
+  o: a[0], train: a[1], from: a[2], to: a[3], terminal: a[4], dir: a[5],
+  status: a[6] === 'P' ? 'Passing' : 'Originating', pmDLI: !!a[7], unres: !!a[8], time: a[9], clone: !!a[10]
+}));
+const OFFS = []; for (let o = FEST.from; o <= FEST.to; o++) OFFS.push(o);
+const C = { navy: '#0E2747', navy2: '#1F4573', gold: '#C9A23A', goldFade: 'rgba(201,162,58,.28)', navyFade: 'rgba(31,69,115,.22)',
+  y25: '#94A6BD', y25Fade: 'rgba(148,166,189,.3)', un26: '#D35400', un25: '#F0A04B' };
+
+/* ===================== STATE ===================== */
+let ROWS = [];
+const S = {
+  period: 'festival', from: PERIODS.festival.from, to: PERIODS.festival.to,
+  day: null, dir: 'East', status: 'Originating', maint: 'ALL', terminal: 'ALL',
+  q: '', sort: 'when', asc: true
+};
+const $ = id => document.getElementById(id);
+
+/* ===================== UTILS ===================== */
+function esc(s) {
+  return String(s == null ? '' : s).replace(/[&<>"']/g, c =>
+    ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+function tally(rows) { const t = new Set(); rows.forEach(r => t.add(r.train)); return { trips: rows.length, trains: t.size }; }
+function groupBy(rows, key) {
+  const m = new Map();
+  rows.forEach(r => { const k = r[key]; if (!m.has(k)) m.set(k, []); m.get(k).push(r); });
+  return m;
+}
+function dObj(iso) { return new Date(iso + 'T00:00:00Z'); }
+function addDays(iso, n) { const d = dObj(iso); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); }
+function fmtShort(iso) { const d = dObj(iso); return String(d.getUTCDate()).padStart(2, '0') + ' ' + MON[d.getUTCMonth()]; }
+function fmtLong(iso) { const d = dObj(iso); return DOW[d.getUTCDay()] + ', ' + fmtShort(iso) + ' ' + d.getUTCFullYear(); }
+function fmtRange(a, b) { return a === b ? fmtLong(a) : fmtShort(a) + ' to ' + fmtShort(b) + ' ' + dObj(b).getUTCFullYear(); }
+function plural(n, w) { return n + ' ' + w + (n === 1 ? '' : 's'); }
+function mins(t) { if (!t) return 9999; const p = t.split(':'); return (+p[0]) * 60 + (+p[1]); }
+function dirRank(d) { const i = DIR_ORDER.indexOf(d); return i < 0 ? 99 : i; }
+function dirLabel(d) { return DIR_ORDER.includes(d) ? d + ' bound' : d; }
+function pct(a, b) { return b ? Math.round(a / b * 100) : 0; }
+
+/** Rows matching every active filter except the dimensions listed in `skip`. */
+function scope(skip) {
+  skip = skip || {};
+  return ROWS.filter(r =>
+    r.date >= S.from && r.date <= S.to &&
+    (skip.day || !S.day || r.date === S.day) &&
+    (skip.dir || S.dir === 'ALL' || r.dir === S.dir) &&
+    (skip.status || S.status === 'Both' || r.status === S.status) &&
+    (skip.maint || S.maint === 'ALL' || (S.maint === 'DLI' ? r.pmDLI : !r.pmDLI)) &&
+    (skip.term || S.terminal === 'ALL' || r.terminal === S.terminal));
+}
+function ctxText(opts) {
+  opts = opts || {};
+  const p = [S.dir === 'ALL' ? 'All directions' : dirLabel(S.dir)];
+  if (!opts.noStatus) p.push(S.status === 'Both' ? 'originating and passing' : S.status.toLowerCase());
+  if (!opts.noTerm && S.terminal !== 'ALL') p.push(S.terminal);
+  if (!opts.noMaint && S.maint !== 'ALL') p.push(S.maint === 'DLI' ? 'PM at DLI' : 'PM at other ends');
+  p.push(!opts.noDay && S.day ? fmtLong(S.day) : fmtRange(S.from, S.to));
+  return p.join(', ');
+}
+
+/* ===================== DATA ===================== */
+function banner(msg) { $('banner').textContent = msg || ''; $('banner').hidden = !msg; }
+
+/* ---------- CSV parsing & row building (replaces the Apps Script feed) ---------- */
+function parseCSV(text) {
+  const rows = []; let row = [], f = '', q = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (q) {
+      if (c === '"') { if (text[i + 1] === '"') { f += '"'; i++; } else q = false; }
+      else f += c;
+    } else if (c === '"') q = true;
+    else if (c === ',') { row.push(f); f = ''; }
+    else if (c === '\n') { row.push(f); rows.push(row); row = []; f = ''; }
+    else if (c !== '\r') f += c;
+  }
+  if (f !== '' || row.length) { row.push(f); rows.push(row); }
+  return rows;
+}
+const MONTHS = { JAN: 1, FEB: 2, MAR: 3, APR: 4, MAY: 5, JUN: 6, JUL: 7, AUG: 8, SEP: 9, OCT: 10, NOV: 11, DEC: 12 };
+function clean(x) { return String(x == null ? '' : x).replace(/\s+/g, ' ').trim(); }
+function p2(n) { return (n < 10 ? '0' : '') + n; }
+function isoOf(y, mo, d) { return (mo < 1 || mo > 12 || d < 1 || d > 31) ? '' : y + '-' + p2(mo) + '-' + p2(d); }
+function toISO(s) {
+  s = clean(s); if (!s) return '';
+  let m = s.match(/^(\d{4})-(\d{1,2})-(\d{1,2})/);
+  if (m) return isoOf(+m[1], +m[2], +m[3]);
+  m = s.match(/^(\d{1,2})[\/.\-](\d{1,2})[\/.\-](\d{2,4})/);
+  if (m) {
+    const a = +m[1], b = +m[2]; let y = +m[3]; if (y < 100) y += 2000;
+    let mo = a, dd = b; if (a > 12 && b <= 12) { mo = b; dd = a; } // sheet shows MM/DD/YYYY
+    return isoOf(y, mo, dd);
+  }
+  m = s.match(/^(\d{1,2})[\s\-]([A-Za-z]{3})[A-Za-z]*[\s\-,]+(\d{2,4})/);
+  if (m) { const mo = MONTHS[m[2].toUpperCase()]; let y = +m[3]; if (y < 100) y += 2000; if (mo) return isoOf(y, mo, +m[1]); }
+  return '';
+}
+function toHHMM(s) {
+  const m = clean(s).match(/(\d{1,2})[:.](\d{2})\s*([AaPp][Mm])?/);
+  if (!m) return '';
+  let h = +m[1]; const ap = m[3] ? m[3].toUpperCase() : '';
+  if (ap === 'PM' && h < 12) h += 12; if (ap === 'AM' && h === 12) h = 0;
+  return h > 23 ? '' : p2(h) + ':' + m[2];
+}
+function normTrain(s) { const t = clean(s); return /^\d{1,4}$/.test(t) ? ('00000' + t).slice(-5) : t; }
+function normDir(s) {
+  const t = clean(s); if (!t) return 'Not specified';
+  const c = t.charAt(0).toLowerCase();
+  return c === 'e' ? 'East' : c === 'w' ? 'West' : c === 'n' ? 'North' : c === 's' ? 'South' : t;
+}
+function buildRows(table) {
+  const rows = [], skipped = [];
+  for (let i = 1; i < table.length; i++) {          // row 1 = header
+    const d = table[i];
+    const train = normTrain(d[COL.TRAIN]);
+    if (!train) continue;
+    const st = clean(d[COL.STATUS]).toLowerCase();
+    if (st.indexOf('term') === 0) continue;               // terminating runs are not part of this dashboard
+    const isPassing = st.indexOf('pass') === 0;
+    const ttype = clean(d[COL.TYPE]).toLowerCase();
+    const date = isPassing ? (toISO(d[COL.ARR_DLI_DATE]) || toISO(d[COL.JCO])) : toISO(d[COL.JCO]);
+    if (!date) { skipped.push({ row: i + 1, train }); continue; }
+    const time = isPassing ? toHHMM(d[COL.PASS_TIME]) : toHHMM(d[COL.DEP]);
+    const terminal = (isPassing ? clean(d[COL.PASS_STN]) : clean(d[COL.FROM])) || clean(d[COL.TERM_I]) || 'Not specified';
+    const maint = clean(d[COL.MAINT]);
+    rows.push({
+      row: i + 1, train, from: clean(d[COL.FROM]), to: clean(d[COL.TO]), date, time, mins: mins(time),
+      terminal: terminal.toUpperCase(), maint: maint || 'Not specified', pmDLI: maint.toUpperCase() === 'PM AT DLI',
+      dir: normDir(d[COL.DIR]), status: isPassing ? 'Passing' : 'Originating',
+      load: clean(d[COL.LOAD]), loadDetails: clean(d[COL.LOAD_DET]), scn: clean(d[COL.SCN]),
+      unres: ttype === 'unreserved', clone: st === 'clone' || ttype === 'clone'
+    });
+  }
+  return { rows, skipped };
+}
+
+async function load() {
+  if (CSV_URL.indexOf('PASTE_') === 0) {
+    banner('Set CSV_URL at the top of index.html to the published CSV link of the Notified tab.');
+    $('stamp').textContent = 'No data source configured.';
+    return;
+  }
+  const btn = $('refresh');
+  btn.disabled = true; btn.textContent = 'Refreshing…';
+  $('stamp').textContent = 'Loading data…';
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), 45000);
+  try {
+    const res = await fetch(CSV_URL + (CSV_URL.indexOf('?') < 0 ? '?' : '&') + '_=' + Date.now(), { signal: ctrl.signal });
+    if (!res.ok) throw new Error('The published sheet returned HTTP ' + res.status + '. Check that the Notified tab is still published to the web.');
+    const text = await res.text();
+    if (/^\s*</.test(text)) throw new Error('The link did not return CSV. Use File > Share > Publish to web > Notified > CSV, and paste that link.');
+    const out = buildRows(parseCSV(text));
+    banner('');
+    ROWS = out.rows;
+    const now = new Date();
+    $('stamp').textContent = 'Notified trains, loaded ' + p2(now.getDate()) + ' ' + MON[now.getMonth()] + ' ' + p2(now.getHours()) + ':' + p2(now.getMinutes());
+    $('skipped').innerHTML = out.skipped.length
+      ? '<span class="has-tip" title="' + esc(out.skipped.map(s => 'Row ' + s.row + ' (' + s.train + ')').join(', ')) + '">'
+        + plural(out.skipped.length, 'sheet row') + ' skipped for an unreadable date</span>'
+      : '';
+    if (!ROWS.length) banner('No rows with a train number and a readable date were found in the Notified tab.');
+    render();
+  } catch (err) {
+    $('stamp').textContent = 'Data not loaded.';
+    banner(err.name === 'AbortError' ? 'The published sheet took too long to respond. Select Refresh data to try again.'
+      : (err.message || 'Could not load the published sheet. Check CSV_URL.'));
+  } finally {
+    clearTimeout(timer);
+    btn.disabled = false; btn.textContent = 'Refresh data';
+  }
+}
+
+/* ===================== EVENTS ===================== */
+$('refresh').addEventListener('click', load);
+
+function onDateChange() {
+  let a = $('fromDate').value, b = $('toDate').value;
+  if (!a || !b) return;
+  if (a > b) { const t = a; a = b; b = t; }
+  S.from = a; S.to = b; S.day = null;
+  S.period = Object.keys(PERIODS).find(k => PERIODS[k].from === a && PERIODS[k].to === b) || 'custom';
+  render();
+}
+$('fromDate').addEventListener('change', onDateChange);
+$('toDate').addEventListener('change', onDateChange);
+
+let searchTimer;
+$('search').addEventListener('input', e => {
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(() => { S.q = e.target.value.trim(); render(); }, 150);
+});
+
+document.addEventListener('click', e => {
+  const t = e.target.closest('[data-period],[data-day],[data-dir],[data-status],[data-maint],[data-clear],[data-sort]');
+  if (!t) return;
+  const ds = t.dataset;
+  if (ds.period) {
+    if (ds.period === 'custom') { S.period = 'custom'; render(); $('fromDate').focus(); return; }
+    S.period = ds.period; S.from = PERIODS[ds.period].from; S.to = PERIODS[ds.period].to; S.day = null;
+  } else if (ds.day) {
+    S.day = S.day === ds.day ? null : ds.day;
+  } else if (ds.dir) {
+    S.dir = ds.dir;
+  } else if (ds.status) {
+    S.status = ds.status;
+  } else if (ds.maint) {
+    S.maint = S.maint === ds.maint ? 'ALL' : ds.maint;
+  } else if (ds.clear) {
+    if (ds.clear === 'day') S.day = null;
+    if (ds.clear === 'maint') S.maint = 'ALL';
+    if (ds.clear === 'term') S.terminal = 'ALL';
+    if (ds.clear === 'q') { S.q = ''; $('search').value = ''; }
+    if (ds.clear === 'all') { S.day = null; S.maint = 'ALL'; S.terminal = 'ALL'; S.q = ''; $('search').value = ''; }
+  } else if (ds.sort) {
+    if (S.sort === ds.sort) S.asc = !S.asc; else { S.sort = ds.sort; S.asc = true; }
+  }
+  render();
+});
+
+/* ===================== CHARTS ===================== */
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+Chart.defaults.font.family = "'Source Sans 3', system-ui, sans-serif";
+Chart.defaults.color = '#586879';
+Chart.defaults.animation = reduceMotion ? false : { duration: 250 };
+
+const donut = new Chart($('donut'), {
+  type: 'doughnut',
+  data: {
+    labels: ['PM at DLI', 'PM at other ends'],
+    datasets: [{ data: [0, 0], backgroundColor: [C.gold, C.navy2], borderColor: '#fff', borderWidth: 2, hoverOffset: 6 }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false, cutout: '64%',
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: c => ' ' + c.label + ': ' + plural(c.raw, 'train') + ' (' + (donut.$trips ? donut.$trips[c.dataIndex] : 0) + ' trips)' } }
+    },
+    onHover: (e, els) => { e.native.target.style.cursor = els.length ? 'pointer' : 'default'; },
+    onClick: (e, els) => {
+      if (!els.length) return;
+      const k = els[0].index === 0 ? 'DLI' : 'OTHER';
+      S.maint = S.maint === k ? 'ALL' : k;
+      render();
+    }
+  }
+});
+
+const termChart = new Chart($('termChart'), {
+  type: 'bar',
+  data: { labels: [], datasets: [
+    { label: 'PM at DLI', data: [], backgroundColor: [], stack: 's', borderRadius: 2, maxBarThickness: 22 },
+    { label: 'PM at other ends', data: [], backgroundColor: [], stack: 's', borderRadius: 2, maxBarThickness: 22 }
+  ] },
+  options: {
+    indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+    interaction: { mode: 'y', intersect: false },
+    scales: {
+      x: { stacked: true, beginAtZero: true, ticks: { precision: 0 }, grid: { color: '#EEF1F5' } },
+      y: { stacked: true, grid: { display: false }, ticks: { color: '#0E2747', font: { family: "'Barlow Condensed', sans-serif", size: 16, weight: '700' } } }
+    },
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: {
+        title: items => items[0].label,
+        footer: items => {
+          const i = items[0].dataIndex;
+          return 'Total: ' + plural(termChart.$trains[i], 'train') + ', ' + plural(termChart.$trips[i], 'trip');
+        }
+      } }
+    },
+    onHover: (e, els) => { e.native.target.style.cursor = els.length ? 'pointer' : 'default'; },
+    onClick: (e, els, chart) => {
+      const pts = chart.getElementsAtEventForMode(e, 'y', { intersect: false }, false);
+      if (!pts.length) return;
+      const k = chart.data.labels[pts[0].index];
+      S.terminal = S.terminal === k ? 'ALL' : k;
+      render();
+    }
+  }
+});
+
+/* ===================== COMPARISON CHARTS ===================== */
+function dLabel(o) { return o === 0 ? 'D-Day' : (o < 0 ? 'D' + o : 'D+' + o); }
+function offOf(iso) { return Math.round((dObj(iso) - dObj(FEST.d26)) / 86400000); }
+function dateOf(o) { return addDays(FEST.d26, o); }
+function isFestival() { return S.from === PERIODS.festival.from && S.to === PERIODS.festival.to; }
+function signed(n) { return (n > 0 ? '+' : '') + n; }
+function chg(a, b) {
+  if (!b) return '';
+  const p = Math.round((a - b) / b * 100);
+  return ' <span class="' + (p >= 0 ? 'up' : 'down') + '">(' + (p > 0 ? '+' : '') + p + '%)</span>';
+}
+function cmpPass(r, skipTerm) {
+  return (S.dir === 'ALL' || r.dir === S.dir)
+    && (S.status === 'Both' || r.status === S.status)
+    && (S.maint === 'ALL' || (S.maint === 'DLI' ? r.pmDLI : !r.pmDLI))
+    && (skipTerm || S.terminal === 'ALL' || r.terminal === S.terminal);
+}
+/** a = 2026 rows in the window (with day offset), b = 2025 rows; same filters for both. */
+function cmpSets(skipTerm) {
+  const lo = dateOf(FEST.from), hi = dateOf(FEST.to);
+  const a = ROWS.filter(r => r.date >= lo && r.date <= hi && cmpPass(r, skipTerm)).map(r => Object.assign({ o: offOf(r.date) }, r));
+  const b = D25.filter(r => cmpPass(r, skipTerm));
+  return { a, b };
+}
+
+// Shades the D-Day column and the selected day; writes the total on top of each year's bar,
+// with the Unreserved count (orange "U n") above it when there are any.
+const cmpMarks = {
+  id: 'cmpMarks',
+  beforeDatasetsDraw(chart) {
+    const { ctx, chartArea: ca, scales: { x } } = chart;
+    const n = chart.data.labels.length;
+    if (!n) return;
+    const w = ca.width / n;
+    const band = (i, color) => { ctx.save(); ctx.fillStyle = color; ctx.fillRect(x.getPixelForValue(i) - w / 2, ca.top, w, ca.bottom - ca.top); ctx.restore(); };
+    band(OFFS.indexOf(0), 'rgba(201,162,58,.16)');
+    if (S.day) { const si = OFFS.indexOf(offOf(S.day)); if (si >= 0) band(si, 'rgba(14,39,71,.10)'); }
+  },
+  afterDatasetsDraw(chart) {
+    const { ctx } = chart;
+    const ds = chart.data.datasets;
+    const stacks = [...new Set(ds.map(d => d.stack))];
+    chart.data.labels.forEach((_, i) => {
+      stacks.forEach(st => {
+        let total = 0, unres = 0, top = Infinity, xPos = null;
+        ds.forEach((d, di) => {
+          if (d.stack !== st || !chart.isDatasetVisible(di)) return;
+          const el = chart.getDatasetMeta(di).data[i];
+          if (!el) return;
+          const v = +d.data[i] || 0;
+          total += v;
+          if (d.$unres) unres += v;
+          top = Math.min(top, el.y);
+          xPos = el.x;
+        });
+        if (xPos === null) return;
+        ctx.save();
+        ctx.textAlign = 'center'; ctx.textBaseline = 'bottom';
+        ctx.font = "700 14px 'Barlow Condensed', sans-serif";
+        ctx.fillStyle = st === '2026' ? '#0E2747' : '#4A5D75';
+        ctx.fillText(total, xPos, top - 2);
+        if (unres) {
+          ctx.font = "700 13px 'Barlow Condensed', sans-serif";
+          ctx.fillStyle = '#B34700';
+          ctx.fillText('U ' + unres, xPos, top - 17);
+        }
+        ctx.restore();
+      });
+    });
+  }
+};
+
+const cmpDay = new Chart($('cmpDay'), {
+  type: 'bar',
+  plugins: [cmpMarks],
+  data: { labels: [], datasets: [
+    { label: '2026 notified', data: [], backgroundColor: C.navy, stack: '2026', maxBarThickness: 26 },
+    { label: '2026 Unreserved', data: [], backgroundColor: C.un26, stack: '2026', maxBarThickness: 26, $unres: true, $ink: '#A84300' },
+    { label: '2025 notified', data: [], backgroundColor: C.y25, stack: '2025', maxBarThickness: 26 },
+    { label: '2025 Unreserved', data: [], backgroundColor: C.un25, stack: '2025', maxBarThickness: 26, $unres: true, $ink: '#B35A00' }
+  ] },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    layout: { padding: { top: 30 } },
+    interaction: { mode: 'index', intersect: false },
+    scales: {
+      x: { stacked: true, grid: { display: false }, ticks: { color: '#15202E', font: ctx => ({ weight: OFFS[ctx.index] === 0 ? '700' : '400' }) } },
+      y: { stacked: true, beginAtZero: true, grace: '12%', ticks: { precision: 0 }, grid: { color: '#EEF1F5' } }
+    },
+    plugins: {
+      legend: { position: 'top', align: 'end', labels: { boxWidth: 12, boxHeight: 12 } },
+      tooltip: { callbacks: {
+        title: items => { const o = OFFS[items[0].dataIndex]; return dLabel(o) + ', ' + fmtLong(dateOf(o)); },
+        label: c => ' ' + c.dataset.label + ': ' + c.raw,
+        footer: items => {
+          const i = items[0].dataIndex, A = cmpDay.$A[i], B = cmpDay.$B[i];
+          return '2026 total ' + A.tot + ', 2025 total ' + B.tot + ' (' + signed(A.tot - B.tot) + ')';
+        }
+      } }
+    },
+    onHover: (e, els) => { e.native.target.style.cursor = els.length ? 'pointer' : 'default'; },
+    onClick: (e, els, chart) => {
+      const pts = chart.getElementsAtEventForMode(e, 'index', { intersect: false }, false);
+      if (!pts.length) return;
+      const d = dateOf(OFFS[pts[0].index]);
+      S.day = S.day === d ? null : d;
+      render();
+    }
+  }
+});
+
+const cmpCum = new Chart($('cmpCum'), {
+  type: 'line',
+  data: { labels: [], datasets: [
+    { label: '2026', data: [], borderColor: C.navy, backgroundColor: C.navy, borderWidth: 3, pointRadius: 3, tension: .2 },
+    { label: '2025', data: [], borderColor: C.y25, backgroundColor: C.y25, borderWidth: 2, borderDash: [6, 4], pointRadius: 2, tension: .2 }
+  ] },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    interaction: { mode: 'index', intersect: false },
+    scales: { x: { grid: { display: false } }, y: { beginAtZero: true, ticks: { precision: 0 }, grid: { color: '#EEF1F5' } } },
+    plugins: {
+      legend: { position: 'top', align: 'end', labels: { boxWidth: 12, boxHeight: 3 } },
+      tooltip: { callbacks: {
+        title: items => { const o = OFFS[items[0].dataIndex]; return 'Up to ' + dLabel(o) + ', ' + fmtShort(dateOf(o)); },
+        footer: items => items.length === 2 ? 'Difference: ' + signed(items[0].raw - items[1].raw) : ''
+      } }
+    }
+  }
+});
+
+const cmpTerm = new Chart($('cmpTerm'), {
+  type: 'bar',
+  data: { labels: [], datasets: [
+    { label: '2026', data: [], backgroundColor: [], maxBarThickness: 14 },
+    { label: '2025', data: [], backgroundColor: [], maxBarThickness: 14 }
+  ] },
+  options: {
+    indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+    interaction: { mode: 'y', intersect: false },
+    scales: {
+      x: { beginAtZero: true, ticks: { precision: 0 }, grid: { color: '#EEF1F5' } },
+      y: { grid: { display: false }, ticks: { color: '#0E2747', font: { family: "'Barlow Condensed', sans-serif", size: 16, weight: '700' } } }
+    },
+    plugins: {
+      legend: { position: 'top', align: 'end', labels: { boxWidth: 12, boxHeight: 12 } },
+      tooltip: { callbacks: { footer: items => items.length === 2 ? 'Change: ' + signed(items[0].raw - items[1].raw) : '' } }
+    },
+    onHover: (e, els) => { e.native.target.style.cursor = els.length ? 'pointer' : 'default'; },
+    onClick: (e, els, chart) => {
+      const pts = chart.getElementsAtEventForMode(e, 'y', { intersect: false }, false);
+      if (!pts.length) return;
+      const k = chart.data.labels[pts[0].index];
+      S.terminal = S.terminal === k ? 'ALL' : k;
+      render();
+    }
+  }
+});
+
+function renderCompare() {
+  const show = isFestival();
+  const wasHidden = $('cmp').hidden;
+  $('cmp').hidden = !show;
+  if (!show) return;
+
+  const { a, b } = cmpSets(false);
+  const per = (rows, o, f) => rows.filter(r => r.o === o && (!f || f(r))).length;
+  const A = OFFS.map(o => ({ tot: per(a, o), un: per(a, o, r => r.unres), pm: per(a, o, r => r.pmDLI) }));
+  const B = OFFS.map(o => ({ tot: per(b, o), un: per(b, o, r => r.unres), pm: per(b, o, r => r.pmDLI) }));
+  const sum = (arr, k) => arr.reduce((s, x) => s + x[k], 0);
+  const peak = arr => arr.reduce((best, x, i) => x.tot > arr[best].tot ? i : best, 0);
+
+  $('cmpCtx').textContent = ctxText({ noDay: true });
+
+  // ---- KPIs ----
+  const ta = a.length, tb = b.length, tra = tally(a).trains, trb = tally(b).trains;
+  const pmA = sum(A, 'pm'), pmB = sum(B, 'pm'), unA = sum(A, 'un'), unB = sum(B, 'un');
+  const unDays = B.filter(x => x.un > 0).length;
+  const pa = peak(A), pb = peak(B);
+  const card = (cls, label, num, sub) =>
+    '<div class="kpi ' + cls + '"><div class="k-label">' + label + '</div><div class="k-num">' + num + '</div><div class="k-sub">' + sub + '</div></div>';
+  $('ckpis').innerHTML =
+    card('lead', 'Trips in 2026', ta, '<span class="vs">2025: ' + tb + chg(ta, tb) + '</span>')
+    + card('', 'Trains in 2026', tra, '<span class="vs">2025: ' + trb + chg(tra, trb) + '</span>')
+    + card('gold', 'PM at DLI trips, 2026', pmA, '<span class="vs">2025: ' + pmB + chg(pmA, pmB) + '</span>')
+    + card('unres', 'Unreserved (on demand), 2025', unB, 'on ' + plural(unDays, 'day') + '; 2026 so far: ' + unA)
+    + card('', 'Peak day, 2026', ta ? dLabel(OFFS[pa]) + ', ' + fmtShort(dateOf(OFFS[pa])) : '–',
+        (ta ? plural(A[pa].tot, 'trip') + '; ' : '') + '2025 peak: ' + (tb ? dLabel(OFFS[pb]) + ', ' + plural(B[pb].tot, 'trip') : '–'));
+
+  // ---- day chart ----
+  const labels = OFFS.map(o => [dLabel(o), fmtShort(dateOf(o))]);
+  cmpDay.data.labels = labels;
+  cmpDay.data.datasets[0].data = A.map(x => x.tot - x.un);
+  cmpDay.data.datasets[1].data = A.map(x => x.un);
+  cmpDay.data.datasets[2].data = B.map(x => x.tot - x.un);
+  cmpDay.data.datasets[3].data = B.map(x => x.un);
+  cmpDay.$A = A; cmpDay.$B = B;
+  cmpDay.update();
+
+  // ---- cumulative ----
+  let ca = 0, cb = 0;
+  cmpCum.data.labels = labels;
+  cmpCum.data.datasets[0].data = A.map(x => (ca += x.tot));
+  cmpCum.data.datasets[1].data = B.map(x => (cb += x.tot));
+  cmpCum.update();
+
+  // ---- terminals (ignores the terminal filter, highlights the selected one) ----
+  const t = cmpSets(true);
+  const ga = groupBy(t.a, 'terminal'), gb = groupBy(t.b, 'terminal');
+  const keys = [...new Set([...ga.keys(), ...gb.keys()])].map(k => ({ k, x: (ga.get(k) || []).length, y: (gb.get(k) || []).length }))
+    .sort((p, q) => (q.x + q.y) - (p.x + p.y) || p.k.localeCompare(q.k));
+  const on = k => S.terminal === 'ALL' || S.terminal === k;
+  cmpTerm.data.labels = keys.map(e => e.k);
+  cmpTerm.data.datasets[0].data = keys.map(e => e.x);
+  cmpTerm.data.datasets[1].data = keys.map(e => e.y);
+  cmpTerm.data.datasets[0].backgroundColor = keys.map(e => on(e.k) ? C.navy : C.navyFade);
+  cmpTerm.data.datasets[1].backgroundColor = keys.map(e => on(e.k) ? C.y25 : C.y25Fade);
+  $('cTermBox').style.height = Math.max(180, keys.length * 40 + 60) + 'px';
+  cmpTerm.update();
+
+  if (wasHidden) { cmpDay.resize(); cmpCum.resize(); cmpTerm.resize(); }
+}
+
+/* ===================== RENDER ===================== */
+function render() {
+  document.querySelectorAll('[data-period]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.period === S.period)));
+  document.querySelectorAll('[data-status]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.status === S.status)));
+  $('fromDate').value = S.from;
+  $('toDate').value = S.to;
+  renderDirChips();
+  renderActiveChips();
+  renderKPIs();
+  renderCompare();
+  renderCalendar();
+  renderDonut();
+  renderTerminals();
+  renderList();
+}
+
+function renderDirChips() {
+  const g = groupBy(scope({ dir: 1 }), 'dir');
+  const dirs = [...g.keys()];
+  if (!dirs.includes('East')) dirs.push('East');
+  dirs.sort((a, b) => dirRank(a) - dirRank(b) || a.localeCompare(b));
+  const chip = (k, label, n, cls) =>
+    '<button type="button" class="dchip' + (cls ? ' ' + cls : '') + '" data-dir="' + esc(k) + '" aria-pressed="' + (S.dir === k) + '">'
+    + esc(label) + '<b>' + n + '</b></button>';
+  $('dirChips').innerHTML = dirs.map(d => chip(d, d, tally(g.get(d) || []).trains, d === 'East' ? 'east' : '')).join('')
+    + chip('ALL', 'All', tally(scope({ dir: 1 })).trains, '');
+}
+
+function renderActiveChips() {
+  const chips = [];
+  const chip = (label, key) => '<span class="achip">' + esc(label) + '<button type="button" data-clear="' + key + '" aria-label="Remove filter ' + esc(label) + '">×</button></span>';
+  if (S.day) chips.push(chip(fmtLong(S.day), 'day'));
+  if (S.maint !== 'ALL') chips.push(chip(S.maint === 'DLI' ? 'PM at DLI' : 'PM at other ends', 'maint'));
+  if (S.terminal !== 'ALL') chips.push(chip('Terminal ' + S.terminal, 'term'));
+  if (S.q) chips.push(chip('Search: ' + S.q, 'q'));
+  if (chips.length > 1) chips.push('<button type="button" class="linkbtn" data-clear="all">Clear all</button>');
+  $('activeChips').innerHTML = chips.join('');
+}
+
+function renderKPIs() {
+  const rows = scope({ maint: 1 });
+  const all = tally(rows);
+  const pm = tally(rows.filter(r => r.pmDLI));
+  const ot = tally(rows.filter(r => !r.pmDLI));
+  const terms = new Set(rows.map(r => r.terminal)).size;
+  let peak = null;
+  groupBy(rows, 'date').forEach((list, d) => { if (!peak || list.length > peak.n) peak = { d, n: list.length }; });
+
+  $('kpiCtx').textContent = ctxText({ noMaint: true });
+  const card = (cls, label, num, sub) =>
+    '<div class="kpi ' + cls + '"><div class="k-label">' + label + '</div><div class="k-num">' + num + '</div><div class="k-sub">' + sub + '</div></div>';
+  $('kpis').innerHTML =
+    card('lead', 'Trains', all.trains, plural(all.trips, 'trip'))
+    + card('gold', 'PM at DLI', pm.trains, plural(pm.trips, 'trip') + ', ' + pct(pm.trips, all.trips) + '% of trips')
+    + card('navy', 'PM at other ends', ot.trains, plural(ot.trips, 'trip') + ', ' + pct(ot.trips, all.trips) + '% of trips')
+    + card('', 'Terminals in use', terms, S.terminal !== 'ALL' ? 'filtered to ' + esc(S.terminal) : 'DLI Division')
+    + card('', 'Busiest day', peak ? fmtShort(peak.d) : '–', peak ? plural(peak.n, 'trip') : 'No trips');
+}
+
+function renderCalendar() {
+  // Always originating trips, total for the day; maintenance shown as a split, not a filter.
+  const rows = scope({ day: 1, maint: 1, status: 1 }).filter(r => r.status === 'Originating');
+  const byDate = groupBy(rows, 'date');
+  const days = [];
+  for (let d = S.from; d <= S.to && days.length < CAL_MAX_DAYS; d = addDays(d, 1)) days.push(d);
+
+  let max = 1;
+  days.forEach(d => { const n = (byDate.get(d) || []).length; if (n > max) max = n; });
+
+  let html = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].map(w => '<div class="cal-h">' + w + '</div>').join('');
+  const lead = (dObj(days[0]).getUTCDay() + 6) % 7;
+  for (let i = 0; i < lead; i++) html += '<div></div>';
+
+  days.forEach((d, i) => {
+    const list = byDate.get(d) || [];
+    const n = list.length;
+    const pm = list.filter(r => r.pmDLI).length;
+    const ot = n - pm;
+    const dd = dObj(d);
+    const label = dd.getUTCDate() + ((i === 0 || dd.getUTCDate() === 1) ? ' ' + MON[dd.getUTCMonth()] : '');
+    const tip = fmtLong(d) + ': ' + plural(n, 'originating trip') + ' (' + pm + ' PM at DLI, ' + ot + ' PM at other ends)';
+    html += '<button type="button" class="cd' + (S.day === d ? ' on' : '') + (n ? '' : ' zero') + '" data-day="' + d + '"'
+      + ' aria-pressed="' + (S.day === d) + '" title="' + esc(tip) + '" aria-label="' + esc(tip) + '">'
+      + '<span class="cd-date">' + label + '</span>'
+      + '<span class="cd-num">' + n + '</span>'
+      + '<span class="cd-bar"><i class="g" style="width:' + (pm / max * 100).toFixed(1) + '%"></i><i class="n" style="width:' + (ot / max * 100).toFixed(1) + '%"></i></span>'
+      + '<span class="cd-split"><b>' + pm + '</b> DLI, ' + ot + ' other</span>'
+      + '</button>';
+  });
+  $('cal').innerHTML = html;
+
+  const totalDays = Math.round((dObj(S.to) - dObj(S.from)) / 86400000) + 1;
+  $('calNote').textContent = ctxText({ noStatus: true, noMaint: true, noDay: true })
+    + '. Select a day to filter the whole page; select it again to clear.'
+    + (totalDays > CAL_MAX_DAYS ? ' Showing the first ' + CAL_MAX_DAYS + ' days.' : '');
+}
+
+function renderDonut() {
+  const rows = scope({ maint: 1 });
+  const pm = tally(rows.filter(r => r.pmDLI));
+  const ot = tally(rows.filter(r => !r.pmDLI));
+  const ds = donut.data.datasets[0];
+  ds.data = [pm.trains, ot.trains];
+  ds.backgroundColor = [
+    S.maint === 'OTHER' ? C.goldFade : C.gold,
+    S.maint === 'DLI' ? C.navyFade : C.navy2
+  ];
+  donut.$trips = [pm.trips, ot.trips];
+  donut.update();
+
+  const shown = S.maint === 'DLI' ? pm : S.maint === 'OTHER' ? ot : tally(rows);
+  $('donutNum').textContent = shown.trains;
+  $('donutLbl').textContent = (shown.trains === 1 ? 'train' : 'trains') + ', ' + plural(shown.trips, 'trip');
+
+  const total = pm.trains + ot.trains;
+  const row = (key, sw, label, t) =>
+    '<button type="button" class="mrow" data-maint="' + key + '" aria-pressed="' + (S.maint === key) + '">'
+    + '<span class="sw ' + sw + '"></span><span class="m-t">' + label + '</span>'
+    + '<span class="m-v"><b>' + t.trains + '</b> ' + (t.trains === 1 ? 'train' : 'trains') + ', ' + plural(t.trips, 'trip') + ' (' + pct(t.trains, total) + '%)</span>'
+    + '</button>';
+  $('mlegend').innerHTML = row('DLI', 'g', 'PM at DLI Division', pm) + row('OTHER', 'n', 'PM at other ends', ot);
+}
+
+function renderTerminals() {
+  const rows = scope({ term: 1 });
+  const g = groupBy(rows, 'terminal');
+  const e = [...g.entries()].map(([k, list]) => {
+    const pm = list.filter(r => r.pmDLI).length;
+    return { k, pm, ot: list.length - pm, trips: list.length, trains: tally(list).trains };
+  }).sort((a, b) => b.trips - a.trips || a.k.localeCompare(b.k));
+
+  $('termEmpty').hidden = e.length > 0;
+  $('termBox').style.display = e.length ? '' : 'none';
+  $('termBox').style.height = Math.max(160, e.length * 34 + 40) + 'px';
+
+  const on = k => S.terminal === 'ALL' || S.terminal === k;
+  termChart.data.labels = e.map(x => x.k);
+  termChart.data.datasets[0].data = e.map(x => x.pm);
+  termChart.data.datasets[1].data = e.map(x => x.ot);
+  termChart.data.datasets[0].backgroundColor = e.map(x => on(x.k) ? C.gold : C.goldFade);
+  termChart.data.datasets[1].backgroundColor = e.map(x => on(x.k) ? C.navy2 : C.navyFade);
+  termChart.$trains = e.map(x => x.trains);
+  termChart.$trips = e.map(x => x.trips);
+  termChart.update();
+  termChart.resize();
+}
+
+const SORTERS = {
+  when: (a, b) => a.date.localeCompare(b.date) || a.mins - b.mins || a.train.localeCompare(b.train),
+  train: (a, b) => a.train.localeCompare(b.train) || SORTERS.when(a, b),
+  from: (a, b) => a.from.localeCompare(b.from) || SORTERS.when(a, b),
+  to: (a, b) => a.to.localeCompare(b.to) || SORTERS.when(a, b),
+  terminal: (a, b) => a.terminal.localeCompare(b.terminal) || SORTERS.when(a, b),
+  status: (a, b) => a.status.localeCompare(b.status) || SORTERS.when(a, b),
+  maint: (a, b) => (b.pmDLI - a.pmDLI) || a.maint.localeCompare(b.maint) || SORTERS.when(a, b)
+};
+
+function renderList() {
+  let rows = scope({});
+  if (S.q) {
+    const q = S.q.toLowerCase();
+    rows = rows.filter(r => [r.train, r.from, r.to, r.terminal, r.scn, r.maint].some(v => String(v).toLowerCase().includes(q)));
+  }
+  $('h-list').textContent = S.terminal === 'ALL' ? 'Trains at all terminals' : 'Trains from ' + S.terminal;
+  const t = tally(rows);
+  $('listHint').textContent = ctxText({ noTerm: true }) + '. ' + plural(t.trains, 'train') + ', ' + plural(t.trips, 'trip') + '.';
+
+  if (!rows.length) {
+    $('list').innerHTML = '<div class="empty">No trains match these filters.'
+      + (S.terminal !== 'ALL' || S.q || S.day || S.maint !== 'ALL' ? ' <button class="linkbtn" type="button" data-clear="all">Clear filters</button>' : '') + '</div>';
+    return;
+  }
+
+  const sorted = rows.slice().sort(SORTERS[S.sort]);
+  if (!S.asc) sorted.reverse();
+  const grouped = S.sort === 'when';
+  const perDay = grouped ? groupBy(sorted, 'date') : null;
+
+  const th = (key, label) => '<th aria-sort="' + (S.sort === key ? (S.asc ? 'ascending' : 'descending') : 'none') + '">'
+    + (key ? '<button type="button" data-sort="' + key + '">' + label + (S.sort === key ? (S.asc ? ' ▲' : ' ▼') : '') + '</button>' : '<button type="button" tabindex="-1" disabled>' + label + '</button>')
+    + '</th>';
+
+  let html = '<table><thead><tr>'
+    + th('when', 'Date / time') + th('train', 'Train No.') + th('from', 'From') + th('to', 'To')
+    + th('terminal', 'Terminal') + th('', 'Dir.') + th('status', 'Orig./Pass.') + th('maint', 'Maintenance')
+    + th('', 'Load') + th('', 'SCN No.')
+    + '</tr></thead><tbody>';
+
+  let last = '';
+  sorted.forEach(r => {
+    if (grouped && r.date !== last) {
+      last = r.date;
+      const dl = perDay.get(r.date);
+      const dpm = dl.filter(x => x.pmDLI).length;
+      html += '<tr class="sep"><td colspan="10">' + esc(fmtLong(r.date)) + ' — ' + plural(dl.length, 'trip') + (dpm ? ', ' + dpm + ' PM at DLI' : '') + '</td></tr>';
+    }
+    html += '<tr' + (r.pmDLI ? ' class="pm"' : '') + '>'
+      + '<td>' + (grouped ? '' : esc(fmtShort(r.date)) + ' ') + esc(r.time || '–') + '</td>'
+      + '<td class="trn">' + esc(r.train) + '</td>'
+      + '<td>' + esc(r.from) + '</td>'
+      + '<td>' + esc(r.to) + '</td>'
+      + '<td>' + esc(r.terminal) + '</td>'
+      + '<td>' + esc(r.dir) + '</td>'
+      + '<td>' + esc(r.status) + (r.unres ? ' <span class="badge" style="background:#FDEBD8;color:#A84300">Unreserved</span>' : '') + (r.clone ? ' <span class="badge">Clone</span>' : '') + '</td>'
+      + '<td><span class="badge' + (r.pmDLI ? ' pm' : '') + '">' + esc(r.maint) + '</span></td>'
+      + '<td>' + (r.loadDetails ? '<span class="has-tip" title="' + esc(r.loadDetails) + '">' + esc(r.load || 'Details') + '</span>' : esc(r.load)) + '</td>'
+      + '<td>' + esc(r.scn) + '</td>'
+      + '</tr>';
+  });
+  html += '</tbody></table>';
+  $('list').innerHTML = html;
+}
+
+render();
+load();
+</script>
+</body>
+</html>
